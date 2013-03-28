@@ -8,28 +8,31 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
-    //QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
-    //db.setDatabaseName("/home/harshit/my.sqlite.db");
-    /*bool ok = db.open();
+    /*QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
+    db.setDatabaseName("/home/harshit/my.sqlite.db");
+    bool ok = db.open();
     qDebug() << "Trying to connect.......\n";
     if(ok)
     {
-         qDebug() << "Connected !!!";
-         QString Query("SELECT Course_ID FROM depth_courses");
+         /*qDebug() << "Connected !!!";
+         QString Query("SELECT * FROM depth_courses");
          QSqlQuery query(Query, db);
          query.exec();
-         /*while( query.next() )
+         //QSqlQuery insertQuery(QString("INSERT INTO logindetails VALUES ( 'secy' , 'secy' , 1"), db);
+                 //insertQuery.exec();ug()<<query.size();
+         while( query.next() )
          {
 
              //qDebug()<<"INSIDE LOOP";
              //qDebug()<<query.value(0).toInt()<<endl;
              qDebug()<<query.value(0).toString();
              //QString createQuery = QString("CREATE TABLE ").append(query.value(0).toString()).append(" ( rollNo char(10) NOT NULL, grade char(2) NOT NULL, year int NOT NULL, semester int NOT NULL)");
-             QString createQuery = QString("CREATE TABLE table ( rollNo int )");
-             QSqlQuery create_query(createQuery, db);
+             //QString createQuery = QString("CREATE TABLE table ( rollNo int )");
+             //QSqlQuery create_query(createQuery, db);
              //create_query.exec();
 
-         }*/
+         }
+    }
          /*int i;
          QStringList list = db.tables();
          for(i=0;i<list.count();i++)
@@ -47,10 +50,17 @@ int main(int argc, char *argv[])
              qDebug()<<list.at(i).getName();
          }*/
      //}
-         GradesDatabaseManager::Instance()->enterGrade(EnterSubjectGradeQuery("cs21001", "11CS30014", "EX"));
+        // GradesDatabaseManager::Instance()->enterGrade(EnterSubjectGradeQuery("cs21001", "11CS30014", "EX"));
     MainWindow w;
+    /*QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
+    db.setDatabaseName("/home/harshit/my.sqlite.db");
+    bool ok = db.open();
+    if(ok)
+    {
+        db.exec(QString("CREATE TABLE CS30014 (rollNo String NOT NULL)"));
+    }*/
     w.show();
     qDebug()<<"DONE\n";
-    w.close();
+    //w.close();
     return a.exec();
 }

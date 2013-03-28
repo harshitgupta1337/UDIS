@@ -54,4 +54,5 @@ QList<Course> CoursesDatabaseManager::findCourses(int semester, int type)
         return list;
 
     }
+    db.close();
 }
