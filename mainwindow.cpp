@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "login.h"
+#include "ResearchProjectsDatabaseManager.h"
 #include "ui_mainwindow.h"
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -27,4 +28,16 @@ void MainWindow::on_submitButton_clicked()
 void MainWindow::on_managePublicationsButton_clicked()
 {
     ui->stackedWidget->setCurrentIndex(2);
+    ui->ResearchPaperStackedWidget->setCurrentIndex(0);
+}
+
+void MainWindow::on_AddResearchPaperPushButton_clicked()
+{
+    ui->ResearchPaperStackedWidget->setCurrentIndex(1);
+}
+
+void MainWindow::on_ViewResearchPaperPushButton_clicked()
+{
+    ui->ResearchPaperStackedWidget->setCurrentIndex(2);
+    //POPULATE THE RESEARCH PAPERS TABLE
 }

@@ -18,7 +18,8 @@ SOURCES += main.cpp\
     InventoryItem.cpp \
     InventoryDatabaseManager.cpp \
     GradesDatabaseManager.cpp \
-    login.cpp
+    login.cpp \
+    ResearchProjectsDatabaseManager.cpp
 
 HEADERS  += mainwindow.h \
     Course.h \
@@ -27,6 +28,8 @@ HEADERS  += mainwindow.h \
     InventoryDatabaseManager.h \
     EnterSubjectGradeQuery.h \
     GradesDatabaseManager.h \
-    login.h
+    login.h \
+    ResearchProjectsDatabaseManager.h \
+    ResearchProject.h
 
 FORMS    += mainwindow.ui

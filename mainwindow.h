@@ -20,6 +20,10 @@ private slots:
 
     void on_managePublicationsButton_clicked();
 
+    void on_AddResearchPaperPushButton_clicked();
+
+    void on_ViewResearchPaperPushButton_clicked();
+
 private:
     Ui::MainWindow *ui;
 };

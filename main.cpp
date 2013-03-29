@@ -60,7 +60,6 @@ int main(int argc, char *argv[])
         db.exec(QString("CREATE TABLE CS30014 (rollNo String NOT NULL)"));
     }*/
     w.show();
-    qDebug()<<"DONE\n";
     //w.close();
     return a.exec();
 }

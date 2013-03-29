@@ -23,7 +23,6 @@ int LoginManager::loginVerification(QString username, QString password)
     {
         QString queryTemplate("SELECT * FROM logindetails");
         QSqlQuery loginQuery(queryTemplate, db);
-        qDebug()<<loginQuery.exec();
         loginQuery.next();
         if((loginQuery.value(0).toString().compare(username)==0)&&(loginQuery.value(1).toString().compare(password)==0))
         {
