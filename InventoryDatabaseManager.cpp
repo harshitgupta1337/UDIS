@@ -4,7 +4,7 @@
 
 InventoryDatabaseManager::InventoryDatabaseManager()
 {
-    db.addDatabase("QSQLITE");
+    db = QSqlDatabase::addDatabase("QSQLITE");
     db.setDatabaseName("/home/harshit/my.sqlite.db");
 
 }
@@ -46,6 +46,7 @@ QList<InventoryItem> InventoryDatabaseManager::findInventoryItems(QString locati
         {
             list.append(InventoryItem(query.value(0).toString(), query.value(1).toString(), query.value(2).toInt()));
         }
+        db.close();
         return list;
        }
 }

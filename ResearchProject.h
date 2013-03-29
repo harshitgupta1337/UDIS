@@ -1,21 +1,23 @@
 #include<Qt>
-#include "mainwindow.h"
 #ifndef RESEARCHPROJECT_H
 #define RESEARCHPROJECT_H
 class ResearchProject
 {
     friend class MainWindow;
+    friend class LoginManager;
 public :
-    ResearchProject(QString name, QString author, QString journal, QString abstract):_name(name), _author(author), _journal(journal), _abstract(abstract)
-    {
+    ResearchProject()
+    {}
 
-    }
-
+    ResearchProject(QString name, QString faculty, QString sponsor, int type):_name(name), _faculty(faculty), _sponsor(sponsor), _type(type)
+    {}
+    ResearchProject(QString name, QString faculty, QString sponsor, int type, QString ID):_name(name), _faculty(faculty), _sponsor(sponsor), _type(type), _ProjectID(ID)
+    {}
 private :
     QString _name;
-    QString _journal;
-    QString _author;
-    QString _abstract;
+    QString _faculty;
+    QString _sponsor;
+    QString _ProjectID;
+    int _type;
 };
-
 #endif // RESEARCHPROJECT_H

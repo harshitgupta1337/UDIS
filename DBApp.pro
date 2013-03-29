@@ -19,7 +19,7 @@ SOURCES += main.cpp\
     InventoryDatabaseManager.cpp \
     GradesDatabaseManager.cpp \
     login.cpp \
-    ResearchProjectsDatabaseManager.cpp
+    AccountsListTransactionsDialog.cpp
 
 HEADERS  += mainwindow.h \
     Course.h \
@@ -29,7 +29,9 @@ HEADERS  += mainwindow.h \
     EnterSubjectGradeQuery.h \
     GradesDatabaseManager.h \
     login.h \
-    ResearchProjectsDatabaseManager.h \
-    ResearchProject.h
+    ResearchPaper.h \
+    ResearchProject.h \
+    Transaction.h \
+    AccountsListTransactionsDialog.h
 
 FORMS    += mainwindow.ui

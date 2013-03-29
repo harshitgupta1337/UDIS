@@ -24,6 +24,30 @@ private slots:
 
     void on_ViewResearchPaperPushButton_clicked();
 
+    void on_addResearchPaperButton_clicked();
+
+    void on_manageProjectsButton_clicked();
+
+    void on_AddProjectButton_clicked();
+
+    void on_ViewProjectsButton_clicked();
+
+    void on_AddProjectToDatabaseButton_clicked();
+
+    void on_manageAccountsButton_clicked();
+
+    //void on_ConsultancyProjectGrantRadio_clicked();
+
+    //void on_UniversityGrantRadio_clicked();
+
+    void on_AccountsEnterTransactionButton_clicked();
+
+    void on_AccountsUniversityGrantRadio_clicked();
+
+    void on_AccountsConsultancyProjectGrantRadio_clicked();
+
+    void on_AccountsViewDetailsButton_clicked();
+
 private:
     Ui::MainWindow *ui;
 };

@@ -1,0 +1,6 @@
+Accounts Database
+1. Transaction ID
+2. Amount
+3. Type (0 : Debit , 10 : University Grant , 11 : Sponsored/Consultancy Project , 2: Current Balance)
+4. Transaction Reason : reason for the transaction
+5. Timestamp

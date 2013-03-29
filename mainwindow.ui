@@ -17,14 +17,17 @@
    <widget class="QStackedWidget" name="stackedWidget">
     <property name="geometry">
      <rect>
-      <x>0</x>
+      <x>-10</x>
       <y>0</y>
       <width>611</width>
       <height>441</height>
      </rect>
     </property>
+    <property name="inputMethodHints">
+     <set>Qt::ImhDigitsOnly</set>
+    </property>
     <property name="currentIndex">
-     <number>2</number>
+     <number>3</number>
     </property>
     <widget class="QWidget" name="welcomePage">
      <widget class="QWidget" name="horizontalLayoutWidget">
@@ -67,6 +70,22 @@
         </widget>
        </item>
        <item>
+        <widget class="QLabel" name="incorrectLogin">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
+         <property name="mouseTracking">
+          <bool>false</bool>
+         </property>
+         <property name="inputMethodHints">
+          <set>Qt::ImhNone</set>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item>
         <layout class="QHBoxLayout" name="horizontalLayout">
          <item>
           <widget class="QLabel" name="usernameLabel">
@@ -92,10 +111,13 @@
          <item>
           <widget class="QLineEdit" name="passwordLineEdit">
            <property name="inputMethodHints">
-            <set>Qt::ImhHiddenText</set>
+            <set>Qt::ImhHiddenText|Qt::ImhNoAutoUppercase|Qt::ImhNoPredictiveText</set>
            </property>
            <property name="text">
             <string/>
+           </property>
+           <property name="echoMode">
+            <enum>QLineEdit::Password</enum>
            </property>
           </widget>
          </item>
@@ -237,13 +259,6 @@
          </property>
         </widget>
        </item>
-       <item>
-        <widget class="QPushButton" name="DeleteResearchPaperPushButton">
-         <property name="text">
-          <string>Delete Research Paper</string>
-         </property>
-        </widget>
-       </item>
       </layout>
      </widget>
      <widget class="QStackedWidget" name="ResearchPaperStackedWidget">
@@ -256,7 +271,7 @@
        </rect>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>2</number>
       </property>
       <widget class="QWidget" name="ResearchProjectWelcome">
        <widget class="QLabel" name="label_3">
@@ -278,7 +293,7 @@
         <property name="geometry">
          <rect>
           <x>100</x>
-          <y>30</y>
+          <y>20</y>
           <width>441</width>
           <height>291</height>
          </rect>
@@ -301,7 +316,7 @@
            </property>
           </widget>
          </item>
-         <item row="4" column="1">
+         <item row="5" column="1">
           <widget class="QPlainTextEdit" name="AbstractTextEdit"/>
          </item>
          <item row="1" column="1">
@@ -317,45 +332,390 @@
          <item row="3" column="1">
           <widget class="QLineEdit" name="JournalLineEdit"/>
          </item>
-         <item row="4" column="0">
+         <item row="5" column="0">
           <widget class="QLabel" name="AbstractLabel">
            <property name="text">
             <string>Abstract </string>
            </property>
           </widget>
          </item>
+         <item row="4" column="0">
+          <widget class="QLabel" name="YearLabel">
+           <property name="text">
+            <string>Year</string>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="1">
+          <widget class="QLineEdit" name="YearLineEdit"/>
+         </item>
         </layout>
        </widget>
-      </widget>
-      <widget class="QWidget" name="page_5">
-       <widget class="QTableView" name="papersListTableView">
+       <widget class="QPushButton" name="addResearchPaperButton">
         <property name="geometry">
          <rect>
-          <x>75</x>
-          <y>11</y>
-          <width>491</width>
-          <height>281</height>
-         </rect>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="MorePapersPushButton">
-        <property name="geometry">
-         <rect>
-          <x>470</x>
-          <y>290</y>
-          <width>98</width>
+          <x>413</x>
+          <y>310</y>
+          <width>131</width>
           <height>27</height>
          </rect>
         </property>
         <property name="text">
-         <string>More Papers</string>
+         <string>Add to Database</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="page_5">
+       <widget class="QListView" name="ResearchPapersListView">
+        <property name="geometry">
+         <rect>
+          <x>50</x>
+          <y>20</y>
+          <width>511</width>
+          <height>291</height>
+         </rect>
         </property>
        </widget>
       </widget>
       <widget class="QWidget" name="page_6"/>
      </widget>
     </widget>
+    <widget class="QWidget" name="AccountsPage">
+     <widget class="QStackedWidget" name="AccountsStackedWidget">
+      <property name="geometry">
+       <rect>
+        <x>40</x>
+        <y>30</y>
+        <width>551</width>
+        <height>361</height>
+       </rect>
+      </property>
+      <property name="currentIndex">
+       <number>0</number>
+      </property>
+      <widget class="QWidget" name="verticalStackedWidget_3Page1">
+       <layout class="QVBoxLayout" name="verticalLayout_2">
+        <item>
+         <layout class="QGridLayout" name="gridLayout_3">
+          <item row="3" column="1">
+           <widget class="QGroupBox" name="groupBox_2">
+            <property name="title">
+             <string/>
+            </property>
+            <widget class="QRadioButton" name="AccountsUniversityGrantRadio">
+             <property name="geometry">
+              <rect>
+               <x>20</x>
+               <y>0</y>
+               <width>191</width>
+               <height>22</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string>Annual University Grant</string>
+             </property>
+            </widget>
+            <widget class="QRadioButton" name="AccountsConsultancyProjectGrantRadio">
+             <property name="geometry">
+              <rect>
+               <x>20</x>
+               <y>20</y>
+               <width>241</width>
+               <height>22</height>
+              </rect>
+             </property>
+             <property name="text">
+              <string>Grant from Consultancy Project</string>
+             </property>
+            </widget>
+           </widget>
+          </item>
+          <item row="4" column="0">
+           <widget class="QLabel" name="AccountsProjectLabel">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="text">
+             <string>Beneficiary Project</string>
+            </property>
+           </widget>
+          </item>
+          <item row="7" column="1">
+           <widget class="QPushButton" name="AccountsViewDetailsButton">
+            <property name="text">
+             <string>View Accounts Details </string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1">
+           <widget class="QLineEdit" name="AccountsAmountLineEdit">
+            <property name="inputMethodHints">
+             <set>Qt::ImhDigitsOnly</set>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="0">
+           <widget class="QLabel" name="AccountsTypeLabel">
+            <property name="text">
+             <string>Type of Transaction : </string>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="1">
+           <widget class="QPushButton" name="AccountsEnterTransactionButton">
+            <property name="text">
+             <string>Enter Transaction Details</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="1">
+           <widget class="QComboBox" name="AccountsProjectsComboBox">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <widget class="QLabel" name="AccountsAmountLabel">
+            <property name="text">
+             <string>Amount : </string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QLabel" name="AccountsWelcomeLabel">
+            <property name="text">
+             <string> Update and View Accounts details</string>
+            </property>
+           </widget>
+          </item>
+          <item row="6" column="1">
+           <spacer name="verticalSpacer">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+            <property name="sizeType">
+             <enum>QSizePolicy::Fixed</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>20</width>
+              <height>40</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item row="1" column="1">
+           <spacer name="verticalSpacer_2">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+            <property name="sizeType">
+             <enum>QSizePolicy::Fixed</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>20</width>
+              <height>40</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="page">
+       <widget class="QColumnView" name="AccountsColumnView">
+        <property name="geometry">
+         <rect>
+          <x>5</x>
+          <y>21</y>
+          <width>541</width>
+          <height>341</height>
+         </rect>
+        </property>
+       </widget>
+      </widget>
+     </widget>
+    </widget>
     <widget class="QWidget" name="page_2"/>
+    <widget class="QWidget" name="ProjectsMainPage">
+     <widget class="QWidget" name="horizontalLayoutWidget_3">
+      <property name="geometry">
+       <rect>
+        <x>70</x>
+        <y>0</y>
+        <width>502</width>
+        <height>71</height>
+       </rect>
+      </property>
+      <layout class="QHBoxLayout" name="ProjectsLayout">
+       <item>
+        <widget class="QPushButton" name="AddProjectButton">
+         <property name="text">
+          <string>Add Project</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="ViewProjectsButton">
+         <property name="text">
+          <string>View Projects</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QStackedWidget" name="ProjectStackedwidget">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>70</y>
+        <width>601</width>
+        <height>341</height>
+       </rect>
+      </property>
+      <property name="currentIndex">
+       <number>1</number>
+      </property>
+      <widget class="QWidget" name="ResearchProjectWelcome_2">
+       <widget class="QLabel" name="ProjectWelcomeLabel">
+        <property name="geometry">
+         <rect>
+          <x>160</x>
+          <y>110</y>
+          <width>361</width>
+          <height>81</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Add/View Projects by clicking on the options above.</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="AddProjectPage">
+       <widget class="QWidget" name="gridLayoutWidget_2">
+        <property name="geometry">
+         <rect>
+          <x>100</x>
+          <y>100</y>
+          <width>441</width>
+          <height>181</height>
+         </rect>
+        </property>
+        <layout class="QGridLayout" name="gridLayout_2">
+         <item row="3" column="1">
+          <widget class="QLineEdit" name="projectfacultyLineEdit">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QLineEdit" name="ProjectNameLineEdit"/>
+         </item>
+         <item row="0" column="0">
+          <widget class="QLabel" name="ProjectNameLabel">
+           <property name="text">
+            <string>Project Name</string>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="0">
+          <widget class="QLabel" name="ProjectYearLabel">
+           <property name="text">
+            <string>Sponsor</string>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="1">
+          <widget class="QLineEdit" name="ProjectSponsorLineEdit"/>
+         </item>
+         <item row="5" column="0">
+          <widget class="QLabel" name="label_4">
+           <property name="text">
+            <string>Project Type</string>
+           </property>
+          </widget>
+         </item>
+         <item row="5" column="1">
+          <widget class="QGroupBox" name="groupBox">
+           <property name="title">
+            <string/>
+           </property>
+           <widget class="QRadioButton" name="SponsoredProjectRadioButton">
+            <property name="geometry">
+             <rect>
+              <x>20</x>
+              <y>0</y>
+              <width>191</width>
+              <height>22</height>
+             </rect>
+            </property>
+            <property name="text">
+             <string>Sponsored Project</string>
+            </property>
+           </widget>
+           <widget class="QRadioButton" name="ConsultancyProjectRadioButton">
+            <property name="geometry">
+             <rect>
+              <x>20</x>
+              <y>30</y>
+              <width>201</width>
+              <height>22</height>
+             </rect>
+            </property>
+            <property name="text">
+             <string>Consultancy Project</string>
+            </property>
+           </widget>
+          </widget>
+         </item>
+         <item row="3" column="0">
+          <widget class="QLabel" name="FacultyLabel">
+           <property name="text">
+            <string>Investigator(s)/Consultant(s)</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QPushButton" name="AddProjectToDatabaseButton">
+        <property name="geometry">
+         <rect>
+          <x>413</x>
+          <y>310</y>
+          <width>131</width>
+          <height>27</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Add to Database</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="ListProjectsPage">
+       <widget class="QListView" name="ProjectsListView">
+        <property name="geometry">
+         <rect>
+          <x>50</x>
+          <y>20</y>
+          <width>511</width>
+          <height>291</height>
+         </rect>
+        </property>
+        <property name="midLineWidth">
+         <number>0</number>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="page_8"/>
+     </widget>
+    </widget>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
