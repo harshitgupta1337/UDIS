@@ -192,8 +192,6 @@ void MainWindow::on_enterRegistrationDetailsButton_clicked()
         else
             ui->CourseRegisterAllElectiveCoursesListWidget->addItem(list.at(i)._SubjectID);
     }
-    //ui->CourseRegisterAllDepthCoursesListView->setModel(new QStringListModel(depthList));
-    //ui->CourseRegisterAllElectiveCoursesListView->setModel(new QStringListModel(electiveList));
     ui->stackedWidget->setCurrentIndex(7);
 }
 
