@@ -21,7 +21,9 @@ SOURCES += main.cpp\
     AccountsListTransactionsDialog.cpp \
     OldCourse.cpp \
     Course.cpp \
-    student.cpp
+    student.cpp \
+    studentdatabasemanager.cpp \
+    subject.cpp
 
 HEADERS  += mainwindow.h \
     Course.h \
@@ -34,6 +36,8 @@ HEADERS  += mainwindow.h \
     ResearchProject.h \
     Transaction.h \
     AccountsListTransactionsDialog.h \
-    student.h
+    student.h \
+    studentdatabasemanager.h \
+    subject.h
 
 FORMS    += mainwindow.ui

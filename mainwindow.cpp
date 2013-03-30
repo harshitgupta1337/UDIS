@@ -3,6 +3,7 @@
 #include "ui_mainwindow.h"
 #include "Transaction.h"
 #include "AccountsListTransactionsDialog.h"
+#include "studentdatabasemanager.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -17,6 +18,7 @@ MainWindow::MainWindow(QWidget *parent) :
     {
         ui->SignUpCourseComboBox->addItem(coursesList.at(i)._name);
     }
+
 }
 
 MainWindow::~MainWindow()
@@ -167,10 +169,30 @@ void MainWindow::on_SignUpRegisterButton_clicked()
     }
     else if((ui->SignUpNameLineEdit->text().length()>0)&&(ui->SignUpRollNoLineEdit->text().length()>0))
     {
+        StudentDatabaseManager::Instance()->createStudent(ui->SignUpRollNoLineEdit->text());
+        LoginManager::Instance()->AddLoginDetails(ui->SignUpRollNoLineEdit->text(), ui->SignUpPasswordLineEdit->text(), 0);
         LoginManager::Instance()->RegisterStudent(Student(ui->SignUpRollNoLineEdit->text(), ui->SignUpNameLineEdit->text(), ui->SignUpCourseComboBox->currentText(), ui->SignUpAddressTextEdit->toPlainText(), ui->SignUpBloodGroupLineEdit->text()));
     }
     else
     {
         QMessageBox::warning(this, QString("Insufficient Data"), QString("Please enter the fields with proper data"), QMessageBox::Ok, QMessageBox::Ok);
     }
+}
+
+void MainWindow::on_enterRegistrationDetailsButton_clicked()
+{
+    QList<Subject> list = LoginManager::Instance()->getSubjects();
+    QStringList depthList, electiveList;
+    int i;
+    for(i=0;i<list.count();i++)
+    {
+        if(list.at(i)._type==0)
+            depthList.append(QString(list.at(i)._SubjectID).append(QString(" ")).append(list.at(i)._name));
+        else
+            electiveList.append(QString(list.at(i)._SubjectID).append(QString(" ")).append(list.at(i)._name));
+    }
+    ui->CourseRegisterAllDepthCoursesListView->setModel(new QStringListModel(depthList));
+    ui->CourseRegisterAllElectiveCoursesListView->setModel(new QStringListModel(electiveList));
+    //ui->CourseRegisterAllCoursesListView->setModel(model);
+    ui->stackedWidget->setCurrentIndex(7);
 }

@@ -7,6 +7,7 @@
 #include "ResearchProject.h"
 #include "Course.h"
 #include "student.h"
+#include "subject.h"
 class LoginManager
 {
     public :
@@ -20,6 +21,8 @@ class LoginManager
         QList<Transaction> getTransactions();
         QList<Course> getCourses();
         void RegisterStudent(Student);
+        void AddLoginDetails(QString, QString, int);
+        QList<Subject> getSubjects();
     protected:
         LoginManager();
     private :

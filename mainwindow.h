@@ -1,6 +1,6 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
-
+#include<QtGui>
 #include <QMainWindow>
 
 namespace Ui {
@@ -51,6 +51,8 @@ private slots:
     void on_registerPushButton_clicked();
 
     void on_SignUpRegisterButton_clicked();
+
+    void on_enterRegistrationDetailsButton_clicked();
 
 private:
     Ui::MainWindow *ui;

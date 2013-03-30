@@ -179,8 +179,31 @@ void LoginManager::RegisterStudent(Student student)
         Query.next();
 
         QString insertQueryString = QString("INSERT INTO students VALUES ( '").append(student._rollNo).append("' , '").append(student._name).append("' , '").append(student._course).append("' , '").append(student._address).append("' , '").append(student._bloodGroup).append(QString("' , %1 , %2 , %3 , %4 )").arg(Query.value(0).toInt()).arg(0).arg(0).arg(0));
-        qDebug()<<insertQueryString;
         db.exec(insertQueryString);
         db.close();
+    }
+}
+void LoginManager::AddLoginDetails(QString username, QString password, int type)
+{
+    if(db.open())
+    {
+        QString insertQueryString = QString("INSERT INTO logindetails VALUES ( '").append(username).append("' , '").append(password).append("' , ").append(QString(" %1 )").arg(type));
+        db.exec(insertQueryString);
+        db.close();
+    }
+}
+QList<Subject> LoginManager::getSubjects()
+{
+    QList<Subject> list;
+    if(db.open())
+    {
+        QString queryString("SELECT * FROM depth_courses");
+        QSqlQuery query = db.exec(queryString);
+        while(query.next())
+        {
+            list.append(Subject(query.value(0).toString(), query.value(1).toString(), query.value(2).toInt(), query.value(4).toInt()));
+        }
+        db.close();
+        return list;
     }
 }
