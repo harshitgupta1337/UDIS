@@ -234,3 +234,27 @@ void MainWindow::on_CourseRegisterGoButton_clicked()
         }
     }
 }
+
+void MainWindow::on_EnterGradesPushButton_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(8);
+    ui->EnterGradesStackedWidget->setCurrentIndex(0);
+}
+
+void MainWindow::on_EnterGradesFetchGradeSheetButton_clicked()
+{
+    QList<QString> list = LoginManager::Instance()->getGrades(ui->EnterGradesSubjectCodeLineEdit->text());
+    if(list.count()>0)
+    {
+        int i;
+        qDebug()<<list.count();
+        for(i=0;i<list.count();i=i+2)
+        {
+            ui->EnterGradesTableWidget->insertRow(ui->EnterGradesTableWidget->rowCount());
+            ui->EnterGradesTableWidget->setItem(ui->EnterGradesTableWidget->rowCount()-1, 0, new QTableWidgetItem(list.at(i)));
+            ui->EnterGradesTableWidget->setItem(ui->EnterGradesTableWidget->rowCount()-1, 1, new QTableWidgetItem(list.at(i+1)));
+
+        }
+        ui->EnterGradesStackedWidget->setCurrentIndex(1);
+    }
+}

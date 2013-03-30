@@ -27,6 +27,7 @@ class LoginManager
         void writeRegistrationData(QString, QString);
         int studentRegisteredForSemester(QString);
         int getCredits(QString);
+        QList<QString> getGrades(QString);
     protected:
         LoginManager();
     private :

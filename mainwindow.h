@@ -60,6 +60,10 @@ private slots:
 
     void on_CourseRegisterGoButton_clicked();
 
+    void on_EnterGradesPushButton_clicked();
+
+    void on_EnterGradesFetchGradeSheetButton_clicked();
+
 private:
     Ui::MainWindow *ui;
 };

@@ -17,7 +17,7 @@
    <widget class="QStackedWidget" name="stackedWidget">
     <property name="geometry">
      <rect>
-      <x>-10</x>
+      <x>0</x>
       <y>-10</y>
       <width>611</width>
       <height>441</height>
@@ -27,7 +27,7 @@
      <set>Qt::ImhDigitsOnly</set>
     </property>
     <property name="currentIndex">
-     <number>7</number>
+     <number>8</number>
     </property>
     <widget class="QWidget" name="welcomePage">
      <widget class="QWidget" name="horizontalLayoutWidget">
@@ -166,7 +166,7 @@
         <x>170</x>
         <y>150</y>
         <width>296</width>
-        <height>171</height>
+        <height>194</height>
        </rect>
       </property>
       <layout class="QVBoxLayout" name="secyToolsLayout">
@@ -174,6 +174,13 @@
         <widget class="QPushButton" name="enterRegistrationDetailsButton">
          <property name="text">
           <string>Key in Registration Details</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="EnterGradesPushButton">
+         <property name="text">
+          <string>Enter Grades</string>
          </property>
         </widget>
        </item>
@@ -1084,6 +1091,93 @@
         <height>241</height>
        </rect>
       </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="EnterGradesPage">
+     <widget class="QLabel" name="EnterGradesLabel">
+      <property name="geometry">
+       <rect>
+        <x>270</x>
+        <y>30</y>
+        <width>101</width>
+        <height>17</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Enter Grades</string>
+      </property>
+     </widget>
+     <widget class="QStackedWidget" name="EnterGradesStackedWidget">
+      <property name="geometry">
+       <rect>
+        <x>59</x>
+        <y>99</y>
+        <width>521</width>
+        <height>301</height>
+       </rect>
+      </property>
+      <property name="currentIndex">
+       <number>0</number>
+      </property>
+      <widget class="QWidget" name="page_7">
+       <widget class="QWidget" name="horizontalLayoutWidget_5">
+        <property name="geometry">
+         <rect>
+          <x>110</x>
+          <y>90</y>
+          <width>301</width>
+          <height>80</height>
+         </rect>
+        </property>
+        <layout class="QHBoxLayout" name="horizontalLayout_4">
+         <item>
+          <widget class="QLabel" name="EnterGradesSubjectCodeLabel">
+           <property name="text">
+            <string>Subject Code : </string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="EnterGradesSubjectCodeLineEdit"/>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QPushButton" name="EnterGradesFetchGradeSheetButton">
+        <property name="geometry">
+         <rect>
+          <x>262</x>
+          <y>170</y>
+          <width>151</width>
+          <height>27</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Fetch Grade Sheet</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="page_9">
+       <widget class="QTableWidget" name="EnterGradesTableWidget">
+        <property name="geometry">
+         <rect>
+          <x>170</x>
+          <y>0</y>
+          <width>211</width>
+          <height>192</height>
+         </rect>
+        </property>
+        <column>
+         <property name="text">
+          <string>RollNo</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Grade</string>
+         </property>
+        </column>
+       </widget>
+      </widget>
      </widget>
     </widget>
    </widget>

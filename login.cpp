@@ -266,3 +266,21 @@ int LoginManager::getCredits(QString ID)
         return res;
     }
 }
+QList<QString> LoginManager::getGrades(QString subjectID)
+{
+
+    if(db.open())
+    {
+        QList<QString> list;
+        QString queryString = QString("SELECT * FROM ").append(subjectID.toLower());
+        QSqlQuery query = db.exec(queryString);
+        while(query.next())
+        {
+            list.append(QString(query.value(0).toString()));
+            list.append(QString(query.value(1).toString()));
+
+        }
+        db.close();
+        return list;
+    }
+}
