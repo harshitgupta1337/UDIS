@@ -8,6 +8,7 @@ public :
     static StudentDatabaseManager* Instance();
     void createStudent(QString);
     void insertSubjectRegistration(QString, QString, int);
+    void enterGrade(QString, QString, QString);
 protected:
     StudentDatabaseManager();
 private :

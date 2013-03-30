@@ -284,3 +284,12 @@ QList<QString> LoginManager::getGrades(QString subjectID)
         return list;
     }
 }
+void LoginManager::enterGrade(QString course, QString roll, QString grade)
+{
+    if(db.open())
+    {
+        QString queryString = QString("UPDATE ").append(course.toLower()).append(" SET grade = '").append(grade.toUpper()).append("' WHERE rollNo = '").append(roll).append("'");
+        db.exec(queryString);
+        db.close();
+    }
+}

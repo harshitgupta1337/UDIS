@@ -247,7 +247,6 @@ void MainWindow::on_EnterGradesFetchGradeSheetButton_clicked()
     if(list.count()>0)
     {
         int i;
-        qDebug()<<list.count();
         for(i=0;i<list.count();i=i+2)
         {
             ui->EnterGradesTableWidget->insertRow(ui->EnterGradesTableWidget->rowCount());
@@ -255,6 +254,30 @@ void MainWindow::on_EnterGradesFetchGradeSheetButton_clicked()
             ui->EnterGradesTableWidget->setItem(ui->EnterGradesTableWidget->rowCount()-1, 1, new QTableWidgetItem(list.at(i+1)));
 
         }
+        ui->EnterGradesSubjectCodeLabel_2->setText(ui->EnterGradesSubjectCodeLineEdit->text());
         ui->EnterGradesStackedWidget->setCurrentIndex(1);
+    }
+}
+
+void MainWindow::on_EnterGradesSubmitGradesButton_clicked()
+{
+    int i, flag = 0;
+    for(i=0;i<ui->EnterGradesTableWidget->rowCount();i++)
+    {
+        if(ui->EnterGradesTableWidget->item(i, 1)->text().compare(QString("-"))==0)
+            flag = 1;
+    }
+    if(flag==1)
+    {
+        QMessageBox::warning(this, QString("Incomplete Data"), QString("Please enter grades for all students"), QMessageBox::Ok, QMessageBox::Ok);
+    }
+    else
+    {
+        for(i=0;i<ui->EnterGradesTableWidget->rowCount();i++)
+        {
+            LoginManager::Instance()->enterGrade(ui->EnterGradesSubjectCodeLabel_2->text(), ui->EnterGradesTableWidget->item(i,0)->text(), ui->EnterGradesTableWidget->item(i,1)->text());
+            StudentDatabaseManager::Instance()->enterGrade(ui->EnterGradesSubjectCodeLabel_2->text(), ui->EnterGradesTableWidget->item(i,0)->text(), ui->EnterGradesTableWidget->item(i,1)->text());
+        }
+
     }
 }

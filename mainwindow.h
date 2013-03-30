@@ -64,6 +64,8 @@ private slots:
 
     void on_EnterGradesFetchGradeSheetButton_clicked();
 
+    void on_EnterGradesSubmitGradesButton_clicked();
+
 private:
     Ui::MainWindow *ui;
 };

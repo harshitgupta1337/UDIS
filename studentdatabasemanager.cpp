@@ -32,3 +32,12 @@ void StudentDatabaseManager::createStudent(QString roll)
          db.close();
      }
  }
+void StudentDatabaseManager::enterGrade(QString ID, QString roll, QString grade)
+{
+    if(db.open())
+    {
+        QString queryString = QString("UPDATE student_").append(roll.toLower()).append(" SET Grade = '").append(grade.toUpper()).append("' WHERE SubjectCode = '").append(ID).append("'");
+        db.exec(queryString);
+        db.close();
+    }
+}
