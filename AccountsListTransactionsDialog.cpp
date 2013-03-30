@@ -1,4 +1,4 @@
-#include "AccountsListTransactionsDialog.h"
+/*#include "AccountsListTransactionsDialog.h"
 #include "login.h"
 #include "Transaction.h"
 /*AccountsListTransactionsDialog::AccountsListTransactionsDialog(QWidget *parent):QDialog(parent)

@@ -10,6 +10,13 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     ui->stackedWidget->setCurrentIndex(0);
+
+    QList<Course> coursesList = LoginManager::Instance()->getCourses();
+    int i;
+    for(i=0;i<coursesList.count();i++)
+    {
+        ui->SignUpCourseComboBox->addItem(coursesList.at(i)._name);
+    }
 }
 
 MainWindow::~MainWindow()
@@ -145,4 +152,25 @@ void MainWindow::on_AccountsViewDetailsButton_clicked()
     }
     ui->AccountsColumnView->setModel(model);
 
+}
+
+void MainWindow::on_registerPushButton_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(6);
+}
+
+void MainWindow::on_SignUpRegisterButton_clicked()
+{
+    if(ui->SignUpPasswordLineEdit->text().compare(ui->SignUpConfirmPasswordLineEdit->text())!=0)
+    {
+        QMessageBox::warning(this, QString("Input Error"), QString("Passwords Don't Match"), QMessageBox::Ok, QMessageBox::Ok);
+    }
+    else if((ui->SignUpNameLineEdit->text().length()>0)&&(ui->SignUpRollNoLineEdit->text().length()>0))
+    {
+        LoginManager::Instance()->RegisterStudent(Student(ui->SignUpRollNoLineEdit->text(), ui->SignUpNameLineEdit->text(), ui->SignUpCourseComboBox->currentText(), ui->SignUpAddressTextEdit->toPlainText(), ui->SignUpBloodGroupLineEdit->text()));
+    }
+    else
+    {
+        QMessageBox::warning(this, QString("Insufficient Data"), QString("Please enter the fields with proper data"), QMessageBox::Ok, QMessageBox::Ok);
+    }
 }

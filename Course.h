@@ -4,17 +4,15 @@
 #define COURSE_H
 class Course
 {
-    friend class CoursesDatabaseManager;
+    friend class LoginManager;
+    friend class MainWindow;
 
 public :
-    Course(QString, QString, int, int, int);
-    QString getName() const;
+    Course(QString, int);
 private :
     QString _name;
-    QString _ID;
     int _credits;
-    int _semester;
-    int _type;
-
 };
+
+
 #endif // COURSE_H

@@ -48,6 +48,10 @@ private slots:
 
     void on_AccountsViewDetailsButton_clicked();
 
+    void on_registerPushButton_clicked();
+
+    void on_SignUpRegisterButton_clicked();
+
 private:
     Ui::MainWindow *ui;
 };

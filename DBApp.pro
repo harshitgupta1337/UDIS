@@ -14,16 +14,17 @@ TEMPLATE = app
 SOURCES += main.cpp\
         mainwindow.cpp \
     CoursesDatabaseManager.cpp \
-    Course.cpp \
     InventoryItem.cpp \
     InventoryDatabaseManager.cpp \
     GradesDatabaseManager.cpp \
     login.cpp \
-    AccountsListTransactionsDialog.cpp
+    AccountsListTransactionsDialog.cpp \
+    OldCourse.cpp \
+    Course.cpp \
+    student.cpp
 
 HEADERS  += mainwindow.h \
     Course.h \
-    CoursesDatabaseManager.h \
     InventoryItem.h \
     InventoryDatabaseManager.h \
     EnterSubjectGradeQuery.h \
@@ -32,6 +33,7 @@ HEADERS  += mainwindow.h \
     ResearchPaper.h \
     ResearchProject.h \
     Transaction.h \
-    AccountsListTransactionsDialog.h
+    AccountsListTransactionsDialog.h \
+    student.h
 
 FORMS    += mainwindow.ui

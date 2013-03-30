@@ -5,6 +5,8 @@
 #include "ResearchPaper.h"
 #include "Transaction.h"
 #include "ResearchProject.h"
+#include "Course.h"
+#include "student.h"
 class LoginManager
 {
     public :
@@ -16,6 +18,8 @@ class LoginManager
         QVector<ResearchProject> findResearchProjects(int type = -1);
         void InsertTransaction(Transaction);
         QList<Transaction> getTransactions();
+        QList<Course> getCourses();
+        void RegisterStudent(Student);
     protected:
         LoginManager();
     private :

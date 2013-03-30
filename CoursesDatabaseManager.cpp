@@ -2,7 +2,7 @@
 #include "CoursesDatabaseManager.h"
 #define UNSPECIFIED -1
 
-CoursesDatabaseManager* CoursesDatabaseManager::_instance = 0;
+/*CoursesDatabaseManager* CoursesDatabaseManager::_instance = 0;
 
 CoursesDatabaseManager::CoursesDatabaseManager()
 {
@@ -56,3 +56,4 @@ QList<Course> CoursesDatabaseManager::findCourses(int semester, int type)
     }
     db.close();
 }
+*/

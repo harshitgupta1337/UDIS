@@ -1,14 +1,12 @@
 #include "login.h"
 #include<QtSql>
 
-
 #define UNSPECIFIED -1
 
 LoginManager::LoginManager()
 {
     db = QSqlDatabase::addDatabase("QSQLITE");
     db.setDatabaseName("/home/harshit/my.sqlite.db");
-    //db.open();
 }
 
 LoginManager* LoginManager::_instance = 0;
@@ -64,7 +62,6 @@ QString LoginManager::addResearchPaper(ResearchPaper paper)
         query.next();
         paper._PaperID = QString("P-%1").arg(query.value(0).toInt()+1);
         QString queryString = QString("INSERT INTO research_papers VALUES ( '").append(paper._name).append("' , '").append(paper._author).append("' , '").append(paper._journal).append("' , '").append(paper._abstract).append("' , ").append(QString("%1").arg(paper._year)).append(" , '").append(paper._PaperID).append("' ) ");
-        qDebug()<<queryString;
         db.exec(queryString);
         db.close();
         return paper._PaperID;
@@ -157,4 +154,33 @@ QList<Transaction> LoginManager::getTransactions()
         db.close();
         return list;
        }
+}
+QList<Course> LoginManager::getCourses()
+{
+    QList<Course> list;
+    if(db.open())
+    {
+        QString queryString("SELECT * FROM courses");
+        QSqlQuery query = db.exec(queryString);
+        while(query.next())
+        {
+            list.append(Course(query.value(0).toString(), query.value(1).toInt()));
+        }
+        db.close();
+        return list;
+    }
+}
+void LoginManager::RegisterStudent(Student student)
+{
+    if(db.open())
+    {
+        QString QueryString = QString("SELECT TotalCredits FROM courses WHERE Name = '").append(student._course).append("'");
+        QSqlQuery Query = db.exec(QueryString);
+        Query.next();
+
+        QString insertQueryString = QString("INSERT INTO students VALUES ( '").append(student._rollNo).append("' , '").append(student._name).append("' , '").append(student._course).append("' , '").append(student._address).append("' , '").append(student._bloodGroup).append(QString("' , %1 , %2 , %3 , %4 )").arg(Query.value(0).toInt()).arg(0).arg(0).arg(0));
+        qDebug()<<insertQueryString;
+        db.exec(insertQueryString);
+        db.close();
+    }
 }
