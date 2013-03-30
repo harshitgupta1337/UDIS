@@ -181,18 +181,24 @@ void MainWindow::on_SignUpRegisterButton_clicked()
 
 void MainWindow::on_enterRegistrationDetailsButton_clicked()
 {
+    ui->CourseRegisterAllDepthCoursesListWidget->clear();
     QList<Subject> list = LoginManager::Instance()->getSubjects();
     QStringList depthList, electiveList;
     int i;
     for(i=0;i<list.count();i++)
     {
         if(list.at(i)._type==0)
-            depthList.append(QString(list.at(i)._SubjectID).append(QString(" ")).append(list.at(i)._name));
+            ui->CourseRegisterAllDepthCoursesListWidget->addItem(list.at(i)._SubjectID);
         else
-            electiveList.append(QString(list.at(i)._SubjectID).append(QString(" ")).append(list.at(i)._name));
+            ui->CourseRegisterAllElectiveCoursesListWidget->addItem(list.at(i)._SubjectID);
     }
-    ui->CourseRegisterAllDepthCoursesListView->setModel(new QStringListModel(depthList));
-    ui->CourseRegisterAllElectiveCoursesListView->setModel(new QStringListModel(electiveList));
-    //ui->CourseRegisterAllCoursesListView->setModel(model);
+    //ui->CourseRegisterAllDepthCoursesListView->setModel(new QStringListModel(depthList));
+    //ui->CourseRegisterAllElectiveCoursesListView->setModel(new QStringListModel(electiveList));
     ui->stackedWidget->setCurrentIndex(7);
+}
+
+void MainWindow::on_CourseRegisterAddToDepthCoursesButton_clicked()
+{
+    //ui->CourseRegisterDepthCoursesListWidget->addItem(ui->CourseRegisterAllDepthCoursesListView->model()->);
+
 }
