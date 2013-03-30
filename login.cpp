@@ -293,3 +293,15 @@ void LoginManager::enterGrade(QString course, QString roll, QString grade)
         db.close();
     }
 }
+int LoginManager::getCurrentSemester(QString roll)
+{
+    if(db.open())
+    {
+        QString queryString = QString("SELECT CurrentSemester FROM students").append(" WHERE RollNo = '").append(roll.toUpper()).append("'");
+        QSqlQuery query = db.exec(queryString);
+        query.next();
+        int res = query.value(0).toInt();
+        db.close();
+        return res;
+    }
+}

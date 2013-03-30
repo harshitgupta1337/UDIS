@@ -29,6 +29,7 @@ class LoginManager
         int getCredits(QString);
         QList<QString> getGrades(QString);
         void enterGrade(QString, QString, QString);
+        int getCurrentSemester(QString);
     protected:
         LoginManager();
     private :

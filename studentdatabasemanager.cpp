@@ -36,7 +36,7 @@ void StudentDatabaseManager::enterGrade(QString ID, QString roll, QString grade)
 {
     if(db.open())
     {
-        QString queryString = QString("UPDATE student_").append(roll.toLower()).append(" SET Grade = '").append(grade.toUpper()).append("' WHERE SubjectCode = '").append(ID).append("'");
+        QString queryString = QString("UPDATE student_").append(roll.toLower()).append(" SET Grade = '").append(grade.toUpper()).append("' WHERE SubjectCode = '").append(ID).append(QString("' AND Semester = %1").arg(LoginManager::Instance()->getCurrentSemester(roll)));
         db.exec(queryString);
         db.close();
     }
