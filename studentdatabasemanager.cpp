@@ -1,3 +1,4 @@
+#include "login.h"
 #include "studentdatabasemanager.h"
 StudentDatabaseManager::StudentDatabaseManager()
 {
@@ -17,8 +18,17 @@ void StudentDatabaseManager::createStudent(QString roll)
 {
     if(db.open())
     {
-        QString QueryString = QString("CREATE TABLE student_").append(roll.toLower()).append(" ( SubjectCode TEXT , Credits INTEGER , Semester INTEGER , CurrentSemester INTEGER , Grade TEXT )");
+        QString QueryString = QString("CREATE TABLE student_").append(roll.toLower()).append(" ( SubjectCode TEXT , Credits INTEGER , Semester INTEGER , Grade TEXT )");
         db.exec(QueryString);
         db.close();
     }
 }
+ void StudentDatabaseManager::insertSubjectRegistration(QString rollNo, QString subjectID, int semester)
+ {
+     if(db.open())
+     {
+         QString QueryString = QString("INSERT INTO student_").append(rollNo.toLower()).append(" VALUES ( '").append(subjectID).append(QString("' , %1 , %2 , '-')").arg(LoginManager::Instance()->getCredits(subjectID)).arg(semester));
+         db.exec(QueryString);
+         db.close();
+     }
+ }

@@ -177,8 +177,8 @@ void LoginManager::RegisterStudent(Student student)
         QString QueryString = QString("SELECT TotalCredits FROM courses WHERE Name = '").append(student._course).append("'");
         QSqlQuery Query = db.exec(QueryString);
         Query.next();
-
         QString insertQueryString = QString("INSERT INTO students VALUES ( '").append(student._rollNo).append("' , '").append(student._name).append("' , '").append(student._course).append("' , '").append(student._address).append("' , '").append(student._bloodGroup).append(QString("' , %1 , %2 , %3 , %4 )").arg(Query.value(0).toInt()).arg(0).arg(0).arg(0));
+        qDebug()<<insertQueryString;
         db.exec(insertQueryString);
         db.close();
     }
@@ -238,7 +238,7 @@ void LoginManager::writeRegistrationData(QString rollNo, QString subjectID)
     }
 
 }
-void LoginManager::studentRegisteredForSemester(QString rollNo)//, QString subjectID)
+int LoginManager::studentRegisteredForSemester(QString rollNo)//, QString subjectID)
 {
 
     if(db.open())
@@ -251,5 +251,18 @@ void LoginManager::studentRegisteredForSemester(QString rollNo)//, QString subje
 
         db.exec(queryString);
         db.close();
+        return currentSem;
+    }
+}
+int LoginManager::getCredits(QString ID)
+{
+    if(db.open())
+    {
+        QString queryString = QString("SELECT Credits FROM depth_courses WHERE Course_ID = '").append(ID).append("'");
+        QSqlQuery query = db.exec(queryString);
+        query.next();
+        int res = query.value(0).toInt();
+        db.close();
+        return res;
     }
 }

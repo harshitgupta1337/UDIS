@@ -214,14 +214,17 @@ void MainWindow::on_CourseRegisterGoButton_clicked()
     {
         if(LoginManager::Instance()->checkRollNumber(ui->CourseRegisterRollNoLineEdit->text()))
         {
-            LoginManager::Instance()->studentRegisteredForSemester(ui->CourseRegisterRollNoLineEdit->text());
+            int currentSem = LoginManager::Instance()->studentRegisteredForSemester(ui->CourseRegisterRollNoLineEdit->text());
+
             int i;
             for(i=0;i<ui->CourseRegisterDepthCoursesListWidget->count();i++)
             {
+                StudentDatabaseManager::Instance()->insertSubjectRegistration(ui->CourseRegisterRollNoLineEdit->text(), ui->CourseRegisterDepthCoursesListWidget->item(i)->text(), currentSem);
                 LoginManager::Instance()->writeRegistrationData(ui->CourseRegisterRollNoLineEdit->text(), ui->CourseRegisterDepthCoursesListWidget->item(i)->text());
             }
             for(i=0;i<ui->CourseRegisterBacklogCoursesListWidget->count();i++)
             {
+                StudentDatabaseManager::Instance()->insertSubjectRegistration(ui->CourseRegisterRollNoLineEdit->text(), ui->CourseRegisterBacklogCoursesListWidget->item(i)->text(), currentSem);
                 LoginManager::Instance()->writeRegistrationData(ui->CourseRegisterRollNoLineEdit->text(), ui->CourseRegisterBacklogCoursesListWidget->item(i)->text());
             }
         }

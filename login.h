@@ -25,7 +25,8 @@ class LoginManager
         QList<Subject> getSubjects();
         bool checkRollNumber(QString roll);
         void writeRegistrationData(QString, QString);
-        void studentRegisteredForSemester(QString);
+        int studentRegisteredForSemester(QString);
+        int getCredits(QString);
     protected:
         LoginManager();
     private :
