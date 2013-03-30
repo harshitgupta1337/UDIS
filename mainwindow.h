@@ -56,6 +56,10 @@ private slots:
 
     void on_CourseRegisterAddToDepthCoursesButton_clicked();
 
+    void on_BacklogsButton_clicked();
+
+    void on_CourseRegisterGoButton_clicked();
+
 private:
     Ui::MainWindow *ui;
 };

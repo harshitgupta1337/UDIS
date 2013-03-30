@@ -23,6 +23,9 @@ class LoginManager
         void RegisterStudent(Student);
         void AddLoginDetails(QString, QString, int);
         QList<Subject> getSubjects();
+        bool checkRollNumber(QString roll);
+        void writeRegistrationData(QString, QString);
+        void studentRegisteredForSemester(QString);
     protected:
         LoginManager();
     private :

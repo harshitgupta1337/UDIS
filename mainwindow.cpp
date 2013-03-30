@@ -187,16 +187,47 @@ void MainWindow::on_enterRegistrationDetailsButton_clicked()
     int i;
     for(i=0;i<list.count();i++)
     {
-        if(list.at(i)._type==0)
-            ui->CourseRegisterAllDepthCoursesListWidget->addItem(list.at(i)._SubjectID);
-        else
-            ui->CourseRegisterAllElectiveCoursesListWidget->addItem(list.at(i)._SubjectID);
+        ui->CourseRegisterAllDepthCoursesListWidget->addItem(list.at(i)._SubjectID);
     }
     ui->stackedWidget->setCurrentIndex(7);
 }
 
 void MainWindow::on_CourseRegisterAddToDepthCoursesButton_clicked()
 {
-    //ui->CourseRegisterDepthCoursesListWidget->addItem(ui->CourseRegisterAllDepthCoursesListView->model()->);
 
+    ui->CourseRegisterDepthCoursesListWidget->addItem(ui->CourseRegisterAllDepthCoursesListWidget->currentItem()->text());
+}
+
+void MainWindow::on_BacklogsButton_clicked()
+{
+    ui->CourseRegisterBacklogCoursesListWidget->addItem(ui->CourseRegisterAllDepthCoursesListWidget->currentItem()->text());
+}
+
+
+void MainWindow::on_CourseRegisterGoButton_clicked()
+{
+    if(ui->CourseRegisterRollNoLineEdit->text().length()==0)
+    {
+        QMessageBox::warning(this, QString("Insufficient Data"), QString("Please enter Roll No."), QMessageBox::Ok, QMessageBox::Ok);
+    }
+    else
+    {
+        if(LoginManager::Instance()->checkRollNumber(ui->CourseRegisterRollNoLineEdit->text()))
+        {
+            LoginManager::Instance()->studentRegisteredForSemester(ui->CourseRegisterRollNoLineEdit->text());
+            int i;
+            for(i=0;i<ui->CourseRegisterDepthCoursesListWidget->count();i++)
+            {
+                LoginManager::Instance()->writeRegistrationData(ui->CourseRegisterRollNoLineEdit->text(), ui->CourseRegisterDepthCoursesListWidget->item(i)->text());
+            }
+            for(i=0;i<ui->CourseRegisterBacklogCoursesListWidget->count();i++)
+            {
+                LoginManager::Instance()->writeRegistrationData(ui->CourseRegisterRollNoLineEdit->text(), ui->CourseRegisterBacklogCoursesListWidget->item(i)->text());
+            }
+        }
+        else
+        {
+            QMessageBox::warning(this, QString("Invalid Data"), QString("Please enter a Valid Roll No."), QMessageBox::Ok, QMessageBox::Ok);
+        }
+    }
 }

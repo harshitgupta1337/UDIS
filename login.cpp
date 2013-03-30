@@ -207,3 +207,49 @@ QList<Subject> LoginManager::getSubjects()
         return list;
     }
 }
+bool LoginManager::checkRollNumber(QString roll)
+{
+    if(db.open())
+    {
+        QString QueryString = QString("SELECT COUNT(*) FROM students WHERE RollNo = '").append(roll).append("'");
+        QSqlQuery query = db.exec(QueryString);
+        query.next();
+        if(query.value(0)==1)
+        {
+            db.close();
+            return true;
+        }
+        else
+        {
+            db.close();
+            return false;
+        }
+    }
+}
+void LoginManager::writeRegistrationData(QString rollNo, QString subjectID)
+{
+
+    if(db.open())
+    {
+        QString queryString = QString("INSERT INTO ").append(subjectID.toLower()).append(" VALUES ( '").append(rollNo).append(("' , '-' , 0 , 0 )"));
+
+        db.exec(queryString);
+        db.close();
+    }
+
+}
+void LoginManager::studentRegisteredForSemester(QString rollNo)//, QString subjectID)
+{
+
+    if(db.open())
+    {
+        QString queryString = QString("SELECT CurrentSemester FROM students WHERE RollNo = '").append(rollNo).append("'");
+        QSqlQuery query = db.exec(queryString);
+        query.next();
+        int currentSem = query.value(0).toInt()+1;
+        queryString = QString("UPDATE students SET CurrentSemester=").append(QString("%1").arg(currentSem)).append(" WHERE RollNo = '").append(rollNo).append("'");
+
+        db.exec(queryString);
+        db.close();
+    }
+}
