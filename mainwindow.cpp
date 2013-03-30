@@ -281,3 +281,14 @@ void MainWindow::on_EnterGradesSubmitGradesButton_clicked()
 
     }
 }
+
+void MainWindow::on_GenerateCGPAPushhButton_clicked()
+{
+    QList<QString> list = LoginManager::Instance()->getRollNoList();
+    int i;
+    for(i=0;i<list.count();i++)
+    {
+        float CGPA = StudentDatabaseManager::Instance()->generateCGPA(list.at(i));
+        LoginManager::Instance()->insertCGPA(list.at(i), CGPA);
+    }
+}

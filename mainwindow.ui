@@ -27,7 +27,7 @@
      <set>Qt::ImhDigitsOnly</set>
     </property>
     <property name="currentIndex">
-     <number>8</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="welcomePage">
      <widget class="QWidget" name="horizontalLayoutWidget">
@@ -166,7 +166,7 @@
         <x>170</x>
         <y>150</y>
         <width>296</width>
-        <height>194</height>
+        <height>227</height>
        </rect>
       </property>
       <layout class="QVBoxLayout" name="secyToolsLayout">
@@ -181,6 +181,13 @@
         <widget class="QPushButton" name="EnterGradesPushButton">
          <property name="text">
           <string>Enter Grades</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="GenerateCGPAPushhButton">
+         <property name="text">
+          <string>All Grades Submitted : Generate CGPA</string>
          </property>
         </widget>
        </item>

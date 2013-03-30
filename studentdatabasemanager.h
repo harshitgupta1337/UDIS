@@ -9,6 +9,7 @@ public :
     void createStudent(QString);
     void insertSubjectRegistration(QString, QString, int);
     void enterGrade(QString, QString, QString);
+    float generateCGPA(QString);
 protected:
     StudentDatabaseManager();
 private :

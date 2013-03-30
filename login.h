@@ -30,6 +30,8 @@ class LoginManager
         QList<QString> getGrades(QString);
         void enterGrade(QString, QString, QString);
         int getCurrentSemester(QString);
+        QList<QString> getRollNoList();
+        void insertCGPA(QString, float);
     protected:
         LoginManager();
     private :

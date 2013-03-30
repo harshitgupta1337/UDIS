@@ -66,6 +66,8 @@ private slots:
 
     void on_EnterGradesSubmitGradesButton_clicked();
 
+    void on_GenerateCGPAPushhButton_clicked();
+
 private:
     Ui::MainWindow *ui;
 };

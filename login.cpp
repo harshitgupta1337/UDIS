@@ -305,3 +305,27 @@ int LoginManager::getCurrentSemester(QString roll)
         return res;
     }
 }
+QList<QString> LoginManager::getRollNoList()
+{
+    if(db.open())
+    {
+        QList<QString> list;
+        QString queryString = QString("SELECT RollNo FROM students");
+        QSqlQuery query = db.exec(queryString);
+        while(query.next())
+        {
+            list.append(query.value(0).toString());
+        }
+        db.close();
+        return list;
+    }
+}
+void LoginManager::insertCGPA(QString roll, float CGPA)
+{
+    if(db.open())
+    {
+        QString queryString = QString("UPDATE students SET CGPA = %1").arg(CGPA).append(" WHERE RollNo = '").append(roll.toUpper()).append("'");
+        db.exec(queryString);
+        db.close();
+    }
+}
