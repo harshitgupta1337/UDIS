@@ -18,7 +18,9 @@ MainWindow::MainWindow(QWidget *parent) :
     {
         ui->SignUpCourseComboBox->addItem(coursesList.at(i)._name);
     }
-
+    ui->InventoryAddItemTypeComboBox->addItem(QString("Furniture"));
+    ui->InventoryAddItemTypeComboBox->addItem(QString("Equipment"));
+    ui->InventoryAddItemTypeComboBox->addItem(QString("Stationary"));
 }
 
 MainWindow::~MainWindow()
@@ -246,6 +248,7 @@ void MainWindow::on_EnterGradesPushButton_clicked()
 
 void MainWindow::on_EnterGradesFetchGradeSheetButton_clicked()
 {
+    ui->EnterGradesTableWidget->clear();
     QList<QString> list = LoginManager::Instance()->getGrades(ui->EnterGradesSubjectCodeLineEdit->text());
     if(list.count()>0)
     {
@@ -279,6 +282,7 @@ void MainWindow::on_EnterGradesSubmitGradesButton_clicked()
         for(i=0;i<ui->EnterGradesTableWidget->rowCount();i++)
         {
             LoginManager::Instance()->enterGrade(ui->EnterGradesSubjectCodeLabel_2->text(), ui->EnterGradesTableWidget->item(i,0)->text(), ui->EnterGradesTableWidget->item(i,1)->text());
+            qDebug()<<"-------";
             StudentDatabaseManager::Instance()->enterGrade(ui->EnterGradesSubjectCodeLabel_2->text(), ui->EnterGradesTableWidget->item(i,0)->text(), ui->EnterGradesTableWidget->item(i,1)->text());
         }
 
@@ -382,5 +386,36 @@ void MainWindow::on_GradeSheetGetGradeSheetButton_clicked()
     else
     {
         QMessageBox::warning(this, QString("Invalid Data"), QString("Please enter a Valid Roll No."), QMessageBox::Ok, QMessageBox::Ok);
+    }
+}
+
+void MainWindow::on_manageInventoryButton_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(10);
+    ui->InventoryStackedWidget_2->setCurrentIndex(0);
+}
+
+void MainWindow::on_InventoryAddInventoryButton_clicked()
+{
+    ui->InventoryAddItemRoomComboBox->clear();
+    QStringList list = LoginManager::Instance()->getRooms();
+    int i;
+    for(i=0;i<list.count();i++)
+    {
+        ui->InventoryAddItemRoomComboBox->addItem(list.at(i));
+    }
+    ui->InventoryStackedWidget_2->setCurrentIndex(1);
+}
+
+void MainWindow::on_InventoryListInventoryButton_clicked()
+{
+    ui->InventoryStackedWidget_2->setCurrentIndex(2);
+}
+
+void MainWindow::on_InventoryAddItemButton_clicked()
+{
+    if(LoginManager::Instance()->InsertTransaction(Transaction(ui->InventoryAddItemPriceLineEdit_2->text().toInt(), 0, ui->InventoryAddItemRoomComboBox->currentText().append(" : ").append(ui->InventoryAddItemDescriptionLineEdit->text()))));
+    {
+        LoginManager::Instance()->insertInventoryItem(InventoryItem(ui->InventoryAddItemDescriptionLineEdit->text(), ui->InventoryAddItemRoomComboBox->currentText(), ui->InventoryAddItemTypeComboBox->currentIndex(), ui->InventoryAddItemPriceLineEdit_2->text().toInt()));
     }
 }

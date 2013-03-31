@@ -8,6 +8,7 @@
 #include "Course.h"
 #include "student.h"
 #include "subject.h"
+#include "InventoryItem.h"
 #include "subjectperformancedetails.h"
 class LoginManager
 {
@@ -18,7 +19,7 @@ class LoginManager
         QString addResearchPaper(ResearchPaper);
         QString addResearchProject(ResearchProject);
         QVector<ResearchProject> findResearchProjects(int type = -1);
-        void InsertTransaction(Transaction);
+        bool InsertTransaction(Transaction);
         QList<Transaction> getTransactions();
         QList<Course> getCourses();
         void RegisterStudent(Student);
@@ -33,6 +34,8 @@ class LoginManager
         int getCurrentSemester(QString);
         QList<QString> getRollNoList();
         void insertCGPA(QString, float);
+        QStringList getRooms();
+        void insertInventoryItem(InventoryItem);
 
     protected:
         LoginManager();

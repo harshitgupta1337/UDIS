@@ -27,7 +27,7 @@
      <set>Qt::ImhDigitsOnly</set>
     </property>
     <property name="currentIndex">
-     <number>9</number>
+     <number>8</number>
     </property>
     <widget class="QWidget" name="welcomePage">
      <widget class="QWidget" name="horizontalLayoutWidget">
@@ -612,7 +612,7 @@
       </property>
      </widget>
     </widget>
-    <widget class="QWidget" name="InventoryPage">
+    <widget class="QWidget" name="InventoryPageOld">
      <widget class="QStackedWidget" name="InventoryStackedWidget">
       <property name="geometry">
        <rect>
@@ -1387,7 +1387,7 @@
        </rect>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="EnterRollNoPage">
        <widget class="QWidget" name="gridLayoutWidget_5">
@@ -1455,8 +1455,167 @@
         <column/>
         <column/>
        </widget>
-       <zorder>GradeSheetGetGradeSheetButton</zorder>
-       <zorder>GradeSheetTableWidget</zorder>
+      </widget>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="InventoryPage">
+     <widget class="QStackedWidget" name="InventoryStackedWidget_2">
+      <property name="geometry">
+       <rect>
+        <x>119</x>
+        <y>100</y>
+        <width>381</width>
+        <height>321</height>
+       </rect>
+      </property>
+      <property name="currentIndex">
+       <number>1</number>
+      </property>
+      <widget class="QWidget" name="InventoryWelcomePage">
+       <widget class="QWidget" name="horizontalLayoutWidget_6">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>120</y>
+          <width>331</width>
+          <height>80</height>
+         </rect>
+        </property>
+        <layout class="QHBoxLayout" name="horizontalLayout_5">
+         <item>
+          <widget class="QPushButton" name="InventoryAddInventoryButton">
+           <property name="text">
+            <string>Add Inventory Item</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="InventoryListInventoryButton">
+           <property name="text">
+            <string>List Inventory Items</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QLabel" name="label_8">
+        <property name="geometry">
+         <rect>
+          <x>90</x>
+          <y>50</y>
+          <width>211</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Manage Department Inventory</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="InventoryAddItemPage">
+       <widget class="QLabel" name="InventoryAddItemLabel">
+        <property name="geometry">
+         <rect>
+          <x>120</x>
+          <y>20</y>
+          <width>141</width>
+          <height>17</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Add Inventory Item</string>
+        </property>
+       </widget>
+       <widget class="QWidget" name="gridLayoutWidget_6">
+        <property name="geometry">
+         <rect>
+          <x>9</x>
+          <y>70</y>
+          <width>361</width>
+          <height>211</height>
+         </rect>
+        </property>
+        <layout class="QGridLayout" name="gridLayout_6">
+         <item row="2" column="1">
+          <widget class="QComboBox" name="InventoryAddItemTypeComboBox"/>
+         </item>
+         <item row="0" column="0">
+          <widget class="QLabel" name="InventoryAddItemDescriptionLabel">
+           <property name="text">
+            <string>Item Description</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QLineEdit" name="InventoryAddItemDescriptionLineEdit"/>
+         </item>
+         <item row="1" column="0">
+          <widget class="QLabel" name="InventoryAddItemPriceLabel_2">
+           <property name="text">
+            <string>Price</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="0">
+          <widget class="QLabel" name="InventoryAddItemTypeLabel_2">
+           <property name="text">
+            <string>Item Type</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1">
+          <widget class="QLineEdit" name="InventoryAddItemPriceLineEdit_2"/>
+         </item>
+         <item row="3" column="0">
+          <widget class="QLabel" name="InventoryAddItemRoomLabel">
+           <property name="text">
+            <string>Room</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="1">
+          <widget class="QComboBox" name="InventoryAddItemRoomComboBox"/>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QPushButton" name="InventoryAddItemButton">
+        <property name="geometry">
+         <rect>
+          <x>274</x>
+          <y>280</y>
+          <width>98</width>
+          <height>27</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Add</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="InventoryListItemsPage">
+       <widget class="QLabel" name="InventoryListItemsLabel">
+        <property name="geometry">
+         <rect>
+          <x>110</x>
+          <y>0</y>
+          <width>171</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>List of Inventory Items</string>
+        </property>
+       </widget>
+       <widget class="QTreeView" name="InventoryListItemsTreeView">
+        <property name="geometry">
+         <rect>
+          <x>25</x>
+          <y>30</y>
+          <width>331</width>
+          <height>271</height>
+         </rect>
+        </property>
+       </widget>
       </widget>
      </widget>
     </widget>

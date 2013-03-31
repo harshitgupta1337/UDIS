@@ -126,7 +126,7 @@ QVector<ResearchProject> LoginManager::findResearchProjects(int type)
         return list;
     }
 }
-void LoginManager::InsertTransaction(Transaction transaction)
+bool LoginManager::InsertTransaction(Transaction transaction)
 {
     if(db.open())
     {
@@ -135,9 +135,29 @@ void LoginManager::InsertTransaction(Transaction transaction)
         countQuery.next();
         transaction._TransactionID = QString("T-%1").arg(countQuery.value(0).toInt());
         transaction._timeStamp = QDateTime::currentDateTime().toString();
-        QString insertQueryString = QString("INSERT INTO accounts VALUES ( '").append(transaction._TransactionID).append("' , ").append(QString("%1 , ").arg(transaction._amount)).append(QString("%1 , '").arg(transaction._type).append(transaction._cause).append("' , '").append(transaction._timeStamp).append("' )"));
+        QString getCurrentBalanceQueryString("SELECT Amount FROM accounts WHERE Type = 2");
+        QSqlQuery getCurrentBalanceQuery = db.exec(getCurrentBalanceQueryString);
+        getCurrentBalanceQuery.next();
+
+        if(getCurrentBalanceQuery.value(0).toInt()<transaction._amount)
+            return false;
+
+        QString insertQueryString = QString("INSERT INTO accounts VALUES ( '").append(transaction._TransactionID).append("' , ").append(QString("%1 , ").arg(transaction._amount)).append(QString("%1 , '").arg(transaction._type).append(transaction._cause).append("' , '").append(transaction._timeStamp).append(QString("' , %1 )").arg(countQuery.value(0).toInt())));
         db.exec(insertQueryString);
+
+        if(transaction._type==10 || transaction._type==11)
+        {
+            QString updateQueryString = QString("UPDATE accounts SET Amount = %1 WHERE Type = 2").arg(transaction._amount + getCurrentBalanceQuery.value(0).toInt());
+            db.exec(updateQueryString);
+        }
+        else if(transaction._type  == 0)
+        {
+            QString updateQueryString = QString("UPDATE accounts SET Amount = %1 WHERE Type = 2").arg(getCurrentBalanceQuery.value(0).toInt() - transaction._amount );
+            db.exec(updateQueryString);
+
+        }
         db.close();
+        return true;
     }
 }
 QList<Transaction> LoginManager::getTransactions()
@@ -329,4 +349,30 @@ void LoginManager::insertCGPA(QString roll, float CGPA)
         db.close();
     }
 }
+QStringList LoginManager::getRooms()
+{
+    if(db.open())
+    {
+        QStringList list;
+        QString queryString = QString("SELECT Room FROM inventory WHERE Type = 1");
+        QSqlQuery query = db.exec(queryString);
+        while(query.next())
+        {
+            list.append(query.value(0).toString());
+        }
+        db.close();
+        return list;
+    }
+}
+void LoginManager::insertInventoryItem(InventoryItem item)
+{
+    if(db.open())
+    {
+        QString queryString = QString("SELECT COUNT(*) FROM inventory WHERE InventoryType = %1 AND Room = '").append(item._room).arg(item._type).append("'");
+        QSqlQuery query = db.exec(queryString);
+        query.next();
 
+        queryString = QString("INSERT INTO inventory VALUES ( '").append(item._room.toUpper()).append(QString("' , %1 , '").arg(item._type)).append(item._room.toUpper().append(QString("-%1-%2' , %3 , %4 , '").arg(item._type).arg(query.value(0).toInt()+1).arg(0).arg(item._price).append(item._name).append("')")));
+        db.exec(queryString);
+    }
+}

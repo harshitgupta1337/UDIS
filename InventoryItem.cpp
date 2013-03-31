@@ -1,5 +1,5 @@
 #include "InventoryItem.h"
-InventoryItem :: InventoryItem(QString ID, QString locationID, int type):_ID(ID), _locationID(locationID), _type(type)
+InventoryItem :: InventoryItem(QString name, QString room, int type, int price):_name(name), _room(room), _type(type), _price(price)
 {
 
 }

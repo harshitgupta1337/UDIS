@@ -86,6 +86,14 @@ private slots:
 
     void on_GradeSheetGetGradeSheetButton_clicked();
 
+    void on_manageInventoryButton_clicked();
+
+    void on_InventoryAddInventoryButton_clicked();
+
+    void on_InventoryListInventoryButton_clicked();
+
+    void on_InventoryAddItemButton_clicked();
+
 private:
     Ui::MainWindow *ui;
 };

@@ -18,7 +18,7 @@ InventoryDatabaseManager* InventoryDatabaseManager::Instance()
     return _instance;
 }
 
-QList<InventoryItem> InventoryDatabaseManager::findInventoryItems(QString locationID, int type)
+/*QList<InventoryItem> InventoryDatabaseManager::findInventoryItems(QString locationID, int type)
 {
     if(db.open())
     {
@@ -49,6 +49,6 @@ QList<InventoryItem> InventoryDatabaseManager::findInventoryItems(QString locati
         db.close();
         return list;
        }
-}
+}*/
 
 

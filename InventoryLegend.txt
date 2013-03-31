@@ -1,0 +1,2 @@
+InventoryType ( 0 : Furniture , 1 : Equipment , 2 : Stationary)
+Type : ( 0 : Normal entry , 1 : Room Entry)
