@@ -6,7 +6,7 @@
 LoginManager::LoginManager()
 {
     db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName("/home/harshit/my.sqlite.db");
+    db.setDatabaseName("my.sqlite.db");
 }
 
 LoginManager* LoginManager::_instance = 0;
@@ -433,4 +433,20 @@ QList<Student> LoginManager::SearchStudents(QString keyword)
         db.close();
         return list;
     }
+}
+QList<ResearchProject> LoginManager::getProjects()
+{
+    if(db.open())
+    {
+        QList<ResearchProject> list;
+        QString queryString("SELECT * FROM research_projects");
+        QSqlQuery query(queryString, db);
+        query.exec();
+        while(query.next())
+        {
+            list.append(ResearchProject(query.value(3).toString(), query.value(2).toString(), query.value(1).toString(), query.value(4).toInt(), query.value(0).toString()));
+        }
+        db.close();
+        return list;
+       }
 }

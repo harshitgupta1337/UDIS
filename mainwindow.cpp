@@ -67,13 +67,12 @@ void MainWindow::on_AddResearchPaperPushButton_clicked()
 void MainWindow::on_ViewResearchPaperPushButton_clicked()
 {
     ui->ResearchPaperStackedWidget->setCurrentIndex(2);
-    //POPULATE THE RESEARCH PAPERS TABLE
     QVector<ResearchPaper> list = LoginManager::Instance()->findResearchPapers();
     QStringList stringList;
     int i;
     for(i=0;i<list.count();i++)
     {
-        stringList.append(QString(list.at(i)._name).append(" By ").append(list.at(i)._author).append(" ").append(list.at(i)._journal));
+        stringList.append(QString("\nPaper Name :").append(list.at(i)._name).append("\nAuthor : ").append(list.at(i)._author).append("\nJournal : ").append(list.at(i)._journal));
     }
     ui->ResearchPapersListView->setModel(new QStringListModel(stringList));
 }
@@ -109,6 +108,14 @@ void MainWindow::on_AddProjectButton_clicked()
 
 void MainWindow::on_ViewProjectsButton_clicked()
 {
+    QVector<ResearchProject> list = LoginManager::Instance()->findResearchProjects();
+    QStringList stringList;
+    int i;
+    for(i=0;i<list.count();i++)
+    {
+        stringList.append(QString("\nProject Name : ").append(list.at(i)._name).append("\nSponsor : ").append(list.at(i)._sponsor).append("\nInvestigator : ").append(list.at(i)._faculty));
+    }
+    ui->ProjectsListView->setModel(new QStringListModel(stringList));
     ui->ProjectStackedwidget->setCurrentIndex(2);
 }
 
@@ -592,6 +599,42 @@ void MainWindow::on_searchButton_clicked()
 }
 
 void MainWindow::on_SearchGoBackButton_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(0);
+}
+
+void MainWindow::on_pushButton_3_clicked()
+{
+    QVector<ResearchProject> list = LoginManager::Instance()->findResearchProjects();
+    QStringList stringList;
+    int i;
+    for(i=0;i<list.count();i++)
+    {
+        stringList.append(QString("\nProject Name : ").append(list.at(i)._name).append("\nSponsor : ").append(list.at(i)._sponsor).append("\nInvestigator : ").append(list.at(i)._faculty));
+    }
+    ui->AllViewResearchProjectsListView->setModel(new QStringListModel(stringList));
+    ui->stackedWidget->setCurrentIndex(13);
+}
+
+void MainWindow::on_pushButton_2_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(14);
+    QVector<ResearchPaper> list = LoginManager::Instance()->findResearchPapers();
+    QStringList stringList;
+    int i;
+    for(i=0;i<list.count();i++)
+    {
+        stringList.append(QString("\nPaper Name :").append(list.at(i)._name).append("\nAuthor : ").append(list.at(i)._author).append("\nJournal : ").append(list.at(i)._journal));
+    }
+    ui->AllViewResearchPapersListView->setModel(new QStringListModel(stringList));
+}
+
+void MainWindow::on_pushButton_5_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(0);
+}
+
+void MainWindow::on_pushButton_4_clicked()
 {
     ui->stackedWidget->setCurrentIndex(0);
 }

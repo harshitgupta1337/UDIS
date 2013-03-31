@@ -40,6 +40,7 @@ class LoginManager
         Student getStudentDetails(QString);
         void updateStudentDetails(QString,QString, QString);
         QList<Student> SearchStudents(QString);
+        QList<ResearchProject> getProjects();
 
     protected:
         LoginManager();

@@ -3,7 +3,7 @@
 StudentDatabaseManager::StudentDatabaseManager()
 {
     db = QSqlDatabase::addDatabase("QSQLITE", QString("studentConnection"));
-    db.setDatabaseName("/home/harshit/students.sqlite.db");
+    db.setDatabaseName("    students.sqlite.db");
 }
 
 StudentDatabaseManager* StudentDatabaseManager::_instance = 0;
