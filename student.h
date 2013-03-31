@@ -5,6 +5,7 @@
 class Student
 {
     friend class LoginManager;
+    friend class MainWindow;
 public:
     Student(QString, QString,QString,QString,QString, int = 0);
 private:

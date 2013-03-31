@@ -23,19 +23,21 @@ int LoginManager::loginVerification(QString username, QString password)
     {
         QString queryTemplate("SELECT * FROM logindetails");
         QSqlQuery loginQuery(queryTemplate, db);
-        loginQuery.next();
-        if((loginQuery.value(0).toString().compare(username)==0)&&(loginQuery.value(1).toString().compare(password)==0))
+        int flag = -1;
+        while(loginQuery.next())
         {
-            db.close();
-            return loginQuery.value(2).toInt();
+
+            if((loginQuery.value(0).toString().compare(username)==0)&&(loginQuery.value(1).toString().compare(password)==0))
+            {
+
+                flag = loginQuery.value(2).toInt();
+
+            }
         }
-        else
-        {
-            db.close();
-            return -1;
-        }
+        db.close();
+
+        return flag;
     }
-    db.close();
 }
 QVector<ResearchPaper> LoginManager::findResearchPapers()
 {
@@ -374,5 +376,45 @@ void LoginManager::insertInventoryItem(InventoryItem item)
 
         queryString = QString("INSERT INTO inventory VALUES ( '").append(item._room.toUpper()).append(QString("' , %1 , '").arg(item._type)).append(item._room.toUpper().append(QString("-%1-%2' , %3 , %4 , '").arg(item._type).arg(query.value(0).toInt()+1).arg(0).arg(item._price).append(item._name).append("')")));
         db.exec(queryString);
+    }
+}
+QStringList LoginManager::getInventoryDetails(QString room)
+{
+    if(db.open())
+    {
+        QStringList list;
+        QString queryString = QString("SELECT * FROM inventory WHERE Type = 0 AND Room = '").append(room).append("'");
+        QSqlQuery query = db.exec(queryString);
+        while(query.next())
+        {
+            list.append(query.value(0).toString());
+            list.append(query.value(2).toString());
+            list.append(query.value(5).toString());
+            list.append(QString("%1").arg(query.value(4).toInt()));
+        }
+        db.close();
+        return list;
+
+    }
+}
+Student LoginManager::getStudentDetails(QString roll)
+{
+    if(db.open())
+    {
+        QString queryString = QString("SELECT * FROM students WHERE RollNo = '").append(roll.toUpper()).append("'");
+        QSqlQuery query = db.exec(queryString);
+        query.next();
+        Student student(query.value(0).toString(), query.value(1).toString(), query.value(2).toString(), query.value(3).toString(), query.value(4).toString(), query.value(7).toInt());
+        db.close();
+        return student;
+    }
+}
+void LoginManager::updateStudentDetails(QString roll, QString address, QString blood)
+{
+    if(db.open())
+    {
+        QString queryString = QString("UPDATE students SET Address = '").append(address).append("' , BloodGroup = '").append(blood).append("' WHERE RollNo = '").append(roll.toUpper()).append("'");
+        db.exec(queryString);
+        db.close();
     }
 }

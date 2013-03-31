@@ -36,6 +36,9 @@ class LoginManager
         void insertCGPA(QString, float);
         QStringList getRooms();
         void insertInventoryItem(InventoryItem);
+        QStringList getInventoryDetails(QString);
+        Student getStudentDetails(QString);
+        void updateStudentDetails(QString,QString, QString);
 
     protected:
         LoginManager();

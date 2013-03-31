@@ -94,6 +94,14 @@ private slots:
 
     void on_InventoryAddItemButton_clicked();
 
+    void on_StudentProfileEditButton_clicked();
+
+    void on_EditProfileSaveChangesButton_clicked();
+
+    void on_StudentProfileLogoutButton_clicked();
+
+    void on_StudentProfileViewDetailButton_clicked();
+
 private:
     Ui::MainWindow *ui;
 };

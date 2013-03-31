@@ -27,7 +27,7 @@
      <set>Qt::ImhDigitsOnly</set>
     </property>
     <property name="currentIndex">
-     <number>8</number>
+     <number>3</number>
     </property>
     <widget class="QWidget" name="welcomePage">
      <widget class="QWidget" name="horizontalLayoutWidget">
@@ -292,7 +292,7 @@
        </rect>
       </property>
       <property name="currentIndex">
-       <number>2</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="ResearchProjectWelcome">
        <widget class="QLabel" name="label_3">
@@ -623,7 +623,7 @@
        </rect>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="page_2">
        <widget class="QLabel" name="label_5">
@@ -1307,7 +1307,7 @@
           <x>170</x>
           <y>40</y>
           <width>211</width>
-          <height>221</height>
+          <height>251</height>
          </rect>
         </property>
         <column>
@@ -1325,7 +1325,7 @@
         <property name="geometry">
          <rect>
           <x>272</x>
-          <y>270</y>
+          <y>290</y>
           <width>111</width>
           <height>27</height>
          </rect>
@@ -1387,7 +1387,7 @@
        </rect>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="EnterRollNoPage">
        <widget class="QWidget" name="gridLayoutWidget_5">
@@ -1617,6 +1617,221 @@
         </property>
        </widget>
       </widget>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="StudentProfilePage">
+     <widget class="QPushButton" name="StudentProfileLogoutButton">
+      <property name="geometry">
+       <rect>
+        <x>510</x>
+        <y>30</y>
+        <width>98</width>
+        <height>27</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Logout</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="StudentProfileGreetingLabel">
+      <property name="geometry">
+       <rect>
+        <x>370</x>
+        <y>36</y>
+        <width>41</width>
+        <height>17</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Hello,</string>
+      </property>
+     </widget>
+     <widget class="QStackedWidget" name="StudentProfileStackedWidget">
+      <property name="geometry">
+       <rect>
+        <x>29</x>
+        <y>79</y>
+        <width>571</width>
+        <height>341</height>
+       </rect>
+      </property>
+      <property name="currentIndex">
+       <number>0</number>
+      </property>
+      <widget class="QWidget" name="page_4">
+       <widget class="QWidget" name="horizontalLayoutWidget_7">
+        <property name="geometry">
+         <rect>
+          <x>100</x>
+          <y>120</y>
+          <width>371</width>
+          <height>80</height>
+         </rect>
+        </property>
+        <layout class="QHBoxLayout" name="horizontalLayout_6">
+         <item>
+          <widget class="QPushButton" name="StudentProfileEditButton">
+           <property name="text">
+            <string>Edit Student Profile</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="StudentProfileViewDetailButton">
+           <property name="text">
+            <string>View Academic Information</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="page_11">
+       <widget class="QLabel" name="EditProfileRollLabel">
+        <property name="geometry">
+         <rect>
+          <x>70</x>
+          <y>58</y>
+          <width>146</width>
+          <height>27</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Roll No :</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="EditProfileRollLineEdit">
+        <property name="geometry">
+         <rect>
+          <x>222</x>
+          <y>58</y>
+          <width>257</width>
+          <height>27</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QPlainTextEdit" name="EditProfileAddressTextArea">
+        <property name="geometry">
+         <rect>
+          <x>222</x>
+          <y>130</y>
+          <width>257</width>
+          <height>78</height>
+         </rect>
+        </property>
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+       </widget>
+       <widget class="QLabel" name="EditProfileAddressLabel">
+        <property name="geometry">
+         <rect>
+          <x>70</x>
+          <y>130</y>
+          <width>146</width>
+          <height>78</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Address :</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="EditProfileBloodLabel">
+        <property name="geometry">
+         <rect>
+          <x>70</x>
+          <y>214</y>
+          <width>146</width>
+          <height>27</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Blood Group : </string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="EditProfileBloodLineedit">
+        <property name="geometry">
+         <rect>
+          <x>222</x>
+          <y>214</y>
+          <width>257</width>
+          <height>27</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="EditProfileSaveChangesButton">
+        <property name="geometry">
+         <rect>
+          <x>357</x>
+          <y>250</y>
+          <width>121</width>
+          <height>27</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Save Changes</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="EditStudentProfileLabel">
+        <property name="geometry">
+         <rect>
+          <x>230</x>
+          <y>20</y>
+          <width>161</width>
+          <height>17</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Edit Student Details</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="page_12">
+       <widget class="QTableWidget" name="StudentProfileTableWidget">
+        <property name="geometry">
+         <rect>
+          <x>65</x>
+          <y>0</y>
+          <width>471</width>
+          <height>341</height>
+         </rect>
+        </property>
+        <property name="columnCount">
+         <number>3</number>
+        </property>
+        <attribute name="horizontalHeaderVisible">
+         <bool>false</bool>
+        </attribute>
+        <attribute name="horizontalHeaderHighlightSections">
+         <bool>false</bool>
+        </attribute>
+        <attribute name="verticalHeaderVisible">
+         <bool>false</bool>
+        </attribute>
+        <attribute name="verticalHeaderHighlightSections">
+         <bool>false</bool>
+        </attribute>
+        <column/>
+        <column/>
+        <column/>
+       </widget>
+      </widget>
+     </widget>
+     <widget class="QLabel" name="StudentProfileRollNoLabel">
+      <property name="geometry">
+       <rect>
+        <x>412</x>
+        <y>36</y>
+        <width>101</width>
+        <height>17</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>RollNo.</string>
+      </property>
      </widget>
     </widget>
    </widget>

@@ -38,6 +38,15 @@ void MainWindow::on_submitButton_clicked()
         ui->passwordLineEdit->clear();
         ui->stackedWidget->setCurrentIndex(1);
     }
+    else if(result == 0)
+    {
+        ui->StudentProfileRollNoLabel->setText(ui->usernameLineEdit->text());
+        ui->incorrectLogin->setText("");
+        ui->usernameLineEdit->clear();
+        ui->passwordLineEdit->clear();
+        ui->stackedWidget->setCurrentIndex(11);
+        ui->StudentProfileStackedWidget->setCurrentIndex(0);
+    }
     else
     {
         ui->incorrectLogin->setText("Incorrect Username or Password");
@@ -74,7 +83,16 @@ void MainWindow::on_addResearchPaperButton_clicked()
 
     QString ID = LoginManager::Instance()->addResearchPaper(ResearchPaper(ui->PaperNameLineEdit->text(), ui->AuthorLineEdit->text(), ui->JournalLineEdit->text(), ui->AbstractTextEdit->toPlainText(), ui->YearLineEdit->text().toInt()));
 
-    QMessageBox::information(this, "Research Paper Added", QString("PaperID : ").append(ID).append(" \nPaper Name : ").append(ui->PaperNameLineEdit->text()).append("\n").append("Author(s) : ").append(ui->AuthorLineEdit->text()).append("\n").append("Journal : ").append(ui->JournalLineEdit->text()), QMessageBox::Ok, QMessageBox::Ok);
+    if(QMessageBox::information(this, "Research Paper Added", QString("PaperID : ").append(ID).append(" \nPaper Name : ").append(ui->PaperNameLineEdit->text()).append("\n").append("Author(s) : ").append(ui->AuthorLineEdit->text()).append("\n").append("Journal : ").append(ui->JournalLineEdit->text()), QMessageBox::Ok, QMessageBox::Ok)==QMessageBox::Ok)
+    {
+
+        ui->stackedWidget->setCurrentIndex(1);
+        ui->PaperNameLineEdit->clear();
+        ui->AuthorLineEdit->clear();
+        ui->JournalLineEdit->clear();
+        ui->YearLineEdit->clear();
+        ui->AbstractTextEdit->clear();
+    }
 }
 
 void MainWindow::on_manageProjectsButton_clicked()
@@ -98,11 +116,20 @@ void MainWindow::on_AddProjectToDatabaseButton_clicked()
 {
     int type = (ui->SponsoredProjectRadioButton->isChecked())?0:1;
     QString ID = LoginManager::Instance()->addResearchProject(ResearchProject(ui->ProjectNameLineEdit->text(), ui->projectfacultyLineEdit->text(), ui->ProjectSponsorLineEdit->text(), type));
-    QMessageBox::information(this, "Research Project Added", QString("Project ID : ").append(ID).append(" \nSponsor : ").append(ui->ProjectSponsorLineEdit->text()).append("\n").append("Principal Investigator(s)/Consultant(s) : ").append(ui->projectfacultyLineEdit->text()).append(ui->ProjectNameLineEdit->text()), QMessageBox::Ok, QMessageBox::Ok);
+    if(QMessageBox::information(this, "Research Project Added", QString("Project ID : ").append(ID).append(" \nSponsor : ").append(ui->ProjectSponsorLineEdit->text()).append("\n").append("Principal Investigator(s)/Consultant(s) : ").append(ui->projectfacultyLineEdit->text()).append(ui->ProjectNameLineEdit->text()), QMessageBox::Ok, QMessageBox::Ok)==QMessageBox::Ok)
+    {
+        ui->ProjectNameLineEdit->clear();
+        ui->projectfacultyLineEdit->clear();
+        ui->ProjectSponsorLineEdit->clear();
+        ui->SponsoredProjectRadioButton->setChecked(false);
+        ui->ConsultancyProjectRadioButton->setCheckable(false);
+        ui->stackedWidget->setCurrentIndex(1);
+    }
 }
 
 void MainWindow::on_manageAccountsButton_clicked()
 {
+
     ui->stackedWidget->setCurrentIndex(3);
     ui->AccountsStackedWidget->setCurrentIndex(0);
     QVector<ResearchProject> list = LoginManager::Instance()->findResearchProjects();
@@ -125,6 +152,17 @@ void MainWindow::on_AccountsEnterTransactionButton_clicked()
             LoginManager::Instance()->InsertTransaction(Transaction(ui->AccountsAmountLineEdit->text().toInt(), 10, QString("University Grant")));
         else
             LoginManager::Instance()->InsertTransaction(Transaction(ui->AccountsAmountLineEdit->text().toInt(), 11, ui->AccountsProjectsComboBox->currentText()));
+
+        if(QMessageBox::information(this, "Data Successfully Submitted", "Transaction has been successfull registered. You will be redirected to Main Page.", QMessageBox::Ok, QMessageBox::Ok)==QMessageBox::Ok)
+        {
+            ui->AccountsAmountLineEdit->clear();
+            ui->AccountsUniversityGrantRadio->setChecked(false);
+            ui->AccountsConsultancyProjectGrantRadio->setChecked(false);
+            ui->AccountsProjectLabel->setEnabled(false);
+            ui->AccountsProjectsComboBox->setEnabled(false);
+            ui->AccountsProjectsComboBox->clear();
+            ui->stackedWidget->setCurrentIndex(1);
+        }
     }
 }
 
@@ -176,6 +214,15 @@ void MainWindow::on_SignUpRegisterButton_clicked()
         StudentDatabaseManager::Instance()->createStudent(ui->SignUpRollNoLineEdit->text());
         LoginManager::Instance()->AddLoginDetails(ui->SignUpRollNoLineEdit->text(), ui->SignUpPasswordLineEdit->text(), 0);
         LoginManager::Instance()->RegisterStudent(Student(ui->SignUpRollNoLineEdit->text(), ui->SignUpNameLineEdit->text(), ui->SignUpCourseComboBox->currentText(), ui->SignUpAddressTextEdit->toPlainText(), ui->SignUpBloodGroupLineEdit->text()));
+        if((QMessageBox::information(this, "Data Successfully Submitted", "You hava been successfully registered. You will be redirected to Main Page."), QMessageBox::Ok, QMessageBox::Ok)==QMessageBox::Ok)
+        {
+            ui->SignUpAddressTextEdit->clear();
+            ui->SignUpBloodGroupLineEdit->clear();
+            ui->SignUpConfirmPasswordLineEdit->clear();
+            ui->SignUpPasswordLineEdit->clear();
+            ui->SignUpRollNoLineEdit->clear();
+            ui->stackedWidget->setCurrentIndex(0);
+        }
     }
     else
     {
@@ -231,6 +278,14 @@ void MainWindow::on_CourseRegisterGoButton_clicked()
                 StudentDatabaseManager::Instance()->insertSubjectRegistration(ui->CourseRegisterRollNoLineEdit->text(), ui->CourseRegisterBacklogCoursesListWidget->item(i)->text(), currentSem);
                 LoginManager::Instance()->writeRegistrationData(ui->CourseRegisterRollNoLineEdit->text(), ui->CourseRegisterBacklogCoursesListWidget->item(i)->text());
             }
+            if(QMessageBox::information(this, "Data Successfully Submitted", ui->CourseRegisterRollNoLineEdit->text().append(" has been successfully registered with the courses.\nYou will be redirected to Main Page."), QMessageBox::Ok, QMessageBox::Ok)==QMessageBox::Ok)
+            {
+                ui->CourseRegisterDepthCoursesListWidget->clear();
+                ui->CourseRegisterAllDepthCoursesListWidget->clear();
+                ui->CourseRegisterBacklogCoursesListWidget->clear();
+                ui->CourseRegisterRollNoLineEdit->clear();
+                ui->stackedWidget->setCurrentIndex(1);
+            }
         }
         else
         {
@@ -282,10 +337,15 @@ void MainWindow::on_EnterGradesSubmitGradesButton_clicked()
         for(i=0;i<ui->EnterGradesTableWidget->rowCount();i++)
         {
             LoginManager::Instance()->enterGrade(ui->EnterGradesSubjectCodeLabel_2->text(), ui->EnterGradesTableWidget->item(i,0)->text(), ui->EnterGradesTableWidget->item(i,1)->text());
-            qDebug()<<"-------";
+
             StudentDatabaseManager::Instance()->enterGrade(ui->EnterGradesSubjectCodeLabel_2->text(), ui->EnterGradesTableWidget->item(i,0)->text(), ui->EnterGradesTableWidget->item(i,1)->text());
         }
 
+    }
+    if(QMessageBox::information(this, "Data Successfully Submitted", "Grades have been seuccessfull entered. You will be redirected to Main Page.", QMessageBox::Ok, QMessageBox::Ok)==QMessageBox::Ok)
+    {
+        ui->EnterGradesTableWidget->clear();
+        ui->stackedWidget->setCurrentIndex(1);
     }
 }
 
@@ -409,13 +469,107 @@ void MainWindow::on_InventoryAddInventoryButton_clicked()
 
 void MainWindow::on_InventoryListInventoryButton_clicked()
 {
+    QStringList rooms = LoginManager::Instance()->getRooms();
+    QStringList list;
+    QStandardItemModel *model = new QStandardItemModel;
+    int i,j;
+    for(i=0;i<rooms.count();i++)
+    {
+        QStandardItem *group = new QStandardItem(rooms.at(i));
+        list = LoginManager::Instance()->getInventoryDetails(rooms.at(i));
+        for(j=0;j<list.count();j=j+4)
+        {
+            QStandardItem *item = new QStandardItem(QString("Item : ").append(list.at(j+1)));
+            group->appendRow(item);
+            item->appendRow(new QStandardItem(QString("Name : ").append(list.at(j+2))));
+            item->appendRow(new QStandardItem(QString("Price : Rs. ").append(list.at(j+3))));
+        }
+        model->appendRow(group);
+    }
+    ui->InventoryListItemsTreeView->setModel(model);
+
     ui->InventoryStackedWidget_2->setCurrentIndex(2);
 }
 
 void MainWindow::on_InventoryAddItemButton_clicked()
 {
-    if(LoginManager::Instance()->InsertTransaction(Transaction(ui->InventoryAddItemPriceLineEdit_2->text().toInt(), 0, ui->InventoryAddItemRoomComboBox->currentText().append(" : ").append(ui->InventoryAddItemDescriptionLineEdit->text()))));
+    if(LoginManager::Instance()->InsertTransaction(Transaction(ui->InventoryAddItemPriceLineEdit_2->text().toInt(), 0, ui->InventoryAddItemRoomComboBox->currentText().append(" : ").append(ui->InventoryAddItemDescriptionLineEdit->text()))))
     {
         LoginManager::Instance()->insertInventoryItem(InventoryItem(ui->InventoryAddItemDescriptionLineEdit->text(), ui->InventoryAddItemRoomComboBox->currentText(), ui->InventoryAddItemTypeComboBox->currentIndex(), ui->InventoryAddItemPriceLineEdit_2->text().toInt()));
+        if(QMessageBox::information(this, "Data Successfully Submitted", "Inventory Item added successfully.", QMessageBox::Ok, QMessageBox::Ok)==QMessageBox::Ok)
+        {
+            ui->InventoryAddItemDescriptionLineEdit->clear();
+            ui->InventoryAddItemPriceLineEdit_2->clear();
+            ui->stackedWidget->setCurrentIndex(1);
+        }
     }
+    else
+    {
+        QMessageBox::warning(this, QString("Out of Funds"), QString("The given transaction cannot be made. The Department would become out of funds."), QMessageBox::Ok, QMessageBox::Ok);
+    }
+}
+
+
+void MainWindow::on_StudentProfileEditButton_clicked()
+{
+    ui->StudentProfileStackedWidget->setCurrentIndex(1);
+    ui->EditProfileRollLineEdit->setText(ui->StudentProfileRollNoLabel->text());
+    ui->EditProfileRollLineEdit->setEnabled(false);
+    Student student = LoginManager::Instance()->getStudentDetails(ui->EditProfileRollLineEdit->text());
+    ui->EditProfileAddressTextArea->setPlainText(student._address);
+    ui->EditProfileBloodLineedit->setText(student._bloodGroup);
+}
+
+void MainWindow::on_EditProfileSaveChangesButton_clicked()
+{
+    LoginManager::Instance()->updateStudentDetails(ui->EditProfileRollLineEdit->text(), ui->EditProfileAddressTextArea->toPlainText(), ui->EditProfileBloodLineedit->text());
+    if(QMessageBox::information(this, "Data Successfully Submitted", "Student Details were Successfully Updated.", QMessageBox::Ok, QMessageBox::Ok)==QMessageBox::Ok)
+    {
+        ui->StudentProfileStackedWidget->setCurrentIndex(0);
+    }
+}
+
+void MainWindow::on_StudentProfileLogoutButton_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(0);
+}
+
+void MainWindow::on_StudentProfileViewDetailButton_clicked()
+{
+    QList<SubjectPerformanceDetails> list;
+    int i=1, j=0;
+    while(true)
+    {
+        list = StudentDatabaseManager::Instance()->getSemesterDetails(ui->StudentProfileRollNoLabel->text(), i);
+        if(list.count()>0)
+        {
+            ui->StudentProfileTableWidget->insertRow(ui->StudentProfileTableWidget->rowCount());
+            ui->StudentProfileTableWidget->setItem(ui->StudentProfileTableWidget->rowCount()-1, 0, new QTableWidgetItem(QString("Semester %1").arg(i)));
+
+            ui->StudentProfileTableWidget->insertRow(ui->StudentProfileTableWidget->rowCount());
+            ui->StudentProfileTableWidget->insertRow(ui->StudentProfileTableWidget->rowCount());
+            ui->StudentProfileTableWidget->setItem(ui->StudentProfileTableWidget->rowCount()-1, 0, new QTableWidgetItem(QString("SUBJECT")));
+            ui->StudentProfileTableWidget->setItem(ui->StudentProfileTableWidget->rowCount()-1, 1, new QTableWidgetItem(QString("CREDITS")));
+            ui->StudentProfileTableWidget->setItem(ui->StudentProfileTableWidget->rowCount()-1, 2, new QTableWidgetItem(QString("GRADE")));
+            for(j=0;j<list.count();j++)
+            {
+
+                ui->StudentProfileTableWidget->insertRow(ui->StudentProfileTableWidget->rowCount());
+                ui->StudentProfileTableWidget->setItem(ui->StudentProfileTableWidget->rowCount()-1, 0, new QTableWidgetItem(list.at(j)._courseCode));
+                ui->StudentProfileTableWidget->setItem(ui->StudentProfileTableWidget->rowCount()-1, 1, new QTableWidgetItem(QString("%1").arg(list.at(j)._credits)));
+                ui->StudentProfileTableWidget->setItem(ui->StudentProfileTableWidget->rowCount()-1, 2, new QTableWidgetItem(list.at(j)._grade));
+            }
+            ui->StudentProfileTableWidget->insertRow(ui->StudentProfileTableWidget->rowCount());
+            ui->StudentProfileTableWidget->insertRow(ui->StudentProfileTableWidget->rowCount());
+            ui->StudentProfileTableWidget->setItem(ui->StudentProfileTableWidget->rowCount()-1, 0, new QTableWidgetItem(QString("SGPA = %1").arg(StudentDatabaseManager::Instance()->generateSGPA(ui->StudentProfileRollNoLabel->text(), i))));
+            ui->StudentProfileTableWidget->setItem(ui->StudentProfileTableWidget->rowCount()-1, 1, new QTableWidgetItem(QString("CGPA = %1").arg(StudentDatabaseManager::Instance()->generateCGPAuptoSem(ui->StudentProfileRollNoLabel->text(), i))));
+            ui->StudentProfileTableWidget->insertRow(ui->StudentProfileTableWidget->rowCount());
+        }
+        else
+        {
+            break;
+        }
+        i++;
+    }
+    ui->StudentProfileStackedWidget->setCurrentIndex(2);
 }

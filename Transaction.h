@@ -15,10 +15,11 @@ public :
 
     }
 private :
-    int _amount;
-    int _type;
-    QString _cause;
     QString _TransactionID;
+    int _amount;
+
+    QString _cause;
+    int _type;
     QString _timeStamp;
 
 };
