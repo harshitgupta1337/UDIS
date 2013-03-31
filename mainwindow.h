@@ -102,6 +102,10 @@ private slots:
 
     void on_StudentProfileViewDetailButton_clicked();
 
+    void on_searchButton_clicked();
+
+    void on_SearchGoBackButton_clicked();
+
 private:
     Ui::MainWindow *ui;
 };

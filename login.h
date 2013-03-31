@@ -39,6 +39,7 @@ class LoginManager
         QStringList getInventoryDetails(QString);
         Student getStudentDetails(QString);
         void updateStudentDetails(QString,QString, QString);
+        QList<Student> SearchStudents(QString);
 
     protected:
         LoginManager();

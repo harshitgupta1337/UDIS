@@ -8,6 +8,7 @@ class Student
     friend class MainWindow;
 public:
     Student(QString, QString,QString,QString,QString, int = 0);
+    Student();
 private:
     QString _name;
     QString _rollNo;

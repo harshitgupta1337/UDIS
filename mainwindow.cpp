@@ -573,3 +573,25 @@ void MainWindow::on_StudentProfileViewDetailButton_clicked()
     }
     ui->StudentProfileStackedWidget->setCurrentIndex(2);
 }
+
+void MainWindow::on_searchButton_clicked()
+{
+    ui->SearchTableWidget_2->clear();
+    QString keyword = ui->searchLineEdit->text();
+    ui->searchLineEdit->clear();
+    QList<Student> list = LoginManager::Instance()->SearchStudents(keyword);
+    int i;
+    for(i=0;i<list.count();i++)
+    {
+        ui->SearchTableWidget_2->insertRow(ui->SearchTableWidget_2->rowCount());
+        ui->SearchTableWidget_2->setItem(ui->SearchTableWidget_2->rowCount()-1, 0, new QTableWidgetItem(list.at(i)._rollNo));
+        ui->SearchTableWidget_2->setItem(ui->SearchTableWidget_2->rowCount()-1, 1, new QTableWidgetItem(list.at(i)._name));
+        ui->SearchTableWidget_2->setItem(ui->SearchTableWidget_2->rowCount()-1, 2, new QTableWidgetItem(list.at(i)._course));
+    }
+    ui->stackedWidget->setCurrentIndex(12);
+}
+
+void MainWindow::on_SearchGoBackButton_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(0);
+}

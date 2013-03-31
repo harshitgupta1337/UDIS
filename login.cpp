@@ -418,3 +418,19 @@ void LoginManager::updateStudentDetails(QString roll, QString address, QString b
         db.close();
     }
 }
+QList<Student> LoginManager::SearchStudents(QString keyword)
+{
+    if(db.open())
+    {
+        QList<Student> list;
+        QString queryString = QString("SELECT * FROM students WHERE RollNo LIKE '%").append(keyword).append("%'");
+        QSqlQuery query = db.exec(queryString);
+        while(query.next())
+        {
+            list.append(Student(query.value(0).toString(), query.value(1).toString(), query.value(2).toString(), query.value(3).toString(), query.value(4).toString(), query.value(7).toInt()));
+        }
+
+        db.close();
+        return list;
+    }
+}
