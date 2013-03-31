@@ -68,6 +68,24 @@ private slots:
 
     void on_GenerateCGPAPushhButton_clicked();
 
+    void on_secretaryLogoutPushButton_7_clicked();
+
+    void on_secretaryLogoutPushButton_8_clicked();
+
+    void on_secretaryLogoutPushButton_clicked();
+
+    void on_secretaryLogoutPushButton_2_clicked();
+
+    void on_secretaryLogoutPushButton_3_clicked();
+
+    void on_secretaryLogoutPushButton_4_clicked();
+
+    void on_secretaryLogoutPushButton_5_clicked();
+
+    void on_pushButton_clicked();
+
+    void on_GradeSheetGetGradeSheetButton_clicked();
+
 private:
     Ui::MainWindow *ui;
 };

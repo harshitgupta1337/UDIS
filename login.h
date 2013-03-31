@@ -8,6 +8,7 @@
 #include "Course.h"
 #include "student.h"
 #include "subject.h"
+#include "subjectperformancedetails.h"
 class LoginManager
 {
     public :
@@ -32,6 +33,7 @@ class LoginManager
         int getCurrentSemester(QString);
         QList<QString> getRollNoList();
         void insertCGPA(QString, float);
+
     protected:
         LoginManager();
     private :

@@ -329,3 +329,4 @@ void LoginManager::insertCGPA(QString roll, float CGPA)
         db.close();
     }
 }
+

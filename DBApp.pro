@@ -23,7 +23,8 @@ SOURCES += main.cpp\
     Course.cpp \
     student.cpp \
     studentdatabasemanager.cpp \
-    subject.cpp
+    subject.cpp \
+    subjectperformancedetails.cpp
 
 HEADERS  += mainwindow.h \
     Course.h \
@@ -38,6 +39,7 @@ HEADERS  += mainwindow.h \
     AccountsListTransactionsDialog.h \
     student.h \
     studentdatabasemanager.h \
-    subject.h
+    subject.h \
+    subjectperformancedetails.h
 
 FORMS    += mainwindow.ui

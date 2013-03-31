@@ -1,4 +1,6 @@
 #include<QtSql>
+#include "subjectperformancedetails.h"
+
 #ifndef STUDENTDATABASEMANAGER_H
 #define STUDENTDATABASEMANAGER_H
 
@@ -10,6 +12,9 @@ public :
     void insertSubjectRegistration(QString, QString, int);
     void enterGrade(QString, QString, QString);
     float generateCGPA(QString);
+    float generateSGPA(QString, int);
+    float generateCGPAuptoSem(QString, int);
+    QList<SubjectPerformanceDetails> getSemesterDetails(QString, int);
 protected:
     StudentDatabaseManager();
 private :

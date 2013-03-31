@@ -32,6 +32,8 @@ void MainWindow::on_submitButton_clicked()
     if(result==1)
     {
         ui->incorrectLogin->setText("");
+        ui->usernameLineEdit->clear();
+        ui->passwordLineEdit->clear();
         ui->stackedWidget->setCurrentIndex(1);
     }
     else
@@ -230,6 +232,7 @@ void MainWindow::on_CourseRegisterGoButton_clicked()
         }
         else
         {
+            //ui->stackedWidget->setCurrentIndex(0);
             QMessageBox::warning(this, QString("Invalid Data"), QString("Please enter a Valid Roll No."), QMessageBox::Ok, QMessageBox::Ok);
         }
     }
@@ -290,5 +293,94 @@ void MainWindow::on_GenerateCGPAPushhButton_clicked()
     {
         float CGPA = StudentDatabaseManager::Instance()->generateCGPA(list.at(i));
         LoginManager::Instance()->insertCGPA(list.at(i), CGPA);
+    }
+}
+
+void MainWindow::on_secretaryLogoutPushButton_7_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(0);
+}
+
+void MainWindow::on_secretaryLogoutPushButton_8_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(0);
+}
+
+void MainWindow::on_secretaryLogoutPushButton_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(0);
+}
+
+void MainWindow::on_secretaryLogoutPushButton_2_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(0);
+}
+
+void MainWindow::on_secretaryLogoutPushButton_3_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(0);
+}
+
+void MainWindow::on_secretaryLogoutPushButton_4_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(0);
+}
+
+void MainWindow::on_secretaryLogoutPushButton_5_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(0);
+}
+
+void MainWindow::on_pushButton_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(9);
+    ui->GradeSheetStackedWidget->setCurrentIndex(0);
+}
+
+void MainWindow::on_GradeSheetGetGradeSheetButton_clicked()
+{
+    if(LoginManager::Instance()->checkRollNumber(ui->GradeSheetRollNumberLineEdit->text()))
+    {
+        QList<SubjectPerformanceDetails> list;
+        int i=1, j=0;
+        while(true)
+        {
+            list = StudentDatabaseManager::Instance()->getSemesterDetails(ui->GradeSheetRollNumberLineEdit->text(), i);
+            if(list.count()>0)
+            {
+                ui->GradeSheetTableWidget->insertRow(ui->GradeSheetTableWidget->rowCount());
+                ui->GradeSheetTableWidget->setItem(ui->GradeSheetTableWidget->rowCount()-1, 0, new QTableWidgetItem(QString("Semester %1").arg(i)));
+
+                ui->GradeSheetTableWidget->insertRow(ui->GradeSheetTableWidget->rowCount());
+                ui->GradeSheetTableWidget->insertRow(ui->GradeSheetTableWidget->rowCount());
+                ui->GradeSheetTableWidget->setItem(ui->GradeSheetTableWidget->rowCount()-1, 0, new QTableWidgetItem(QString("SUBJECT")));
+                ui->GradeSheetTableWidget->setItem(ui->GradeSheetTableWidget->rowCount()-1, 1, new QTableWidgetItem(QString("CREDITS")));
+                ui->GradeSheetTableWidget->setItem(ui->GradeSheetTableWidget->rowCount()-1, 2, new QTableWidgetItem(QString("GRADE")));
+                for(j=0;j<list.count();j++)
+                {
+                    qDebug()<<list.at(0)._courseCode;
+                    ui->GradeSheetTableWidget->insertRow(ui->GradeSheetTableWidget->rowCount());
+                    ui->GradeSheetTableWidget->setItem(ui->GradeSheetTableWidget->rowCount()-1, 0, new QTableWidgetItem(list.at(j)._courseCode));
+                    ui->GradeSheetTableWidget->setItem(ui->GradeSheetTableWidget->rowCount()-1, 1, new QTableWidgetItem(QString("%1").arg(list.at(j)._credits)));
+                    ui->GradeSheetTableWidget->setItem(ui->GradeSheetTableWidget->rowCount()-1, 2, new QTableWidgetItem(list.at(j)._grade));
+                }
+                ui->GradeSheetTableWidget->insertRow(ui->GradeSheetTableWidget->rowCount());
+                ui->GradeSheetTableWidget->insertRow(ui->GradeSheetTableWidget->rowCount());
+                ui->GradeSheetTableWidget->setItem(ui->GradeSheetTableWidget->rowCount()-1, 0, new QTableWidgetItem(QString("SGPA = %1").arg(StudentDatabaseManager::Instance()->generateSGPA(ui->GradeSheetRollNumberLineEdit->text(), i))));
+                ui->GradeSheetTableWidget->setItem(ui->GradeSheetTableWidget->rowCount()-1, 1, new QTableWidgetItem(QString("CGPA = %1").arg(StudentDatabaseManager::Instance()->generateCGPAuptoSem(ui->GradeSheetRollNumberLineEdit->text(), i))));
+                ui->GradeSheetTableWidget->insertRow(ui->GradeSheetTableWidget->rowCount());
+            }
+            else
+            {
+                break;
+            }
+            i++;
+        }
+        ui->GradeSheetStackedWidget->setCurrentIndex(1);
+
+    }
+    else
+    {
+        QMessageBox::warning(this, QString("Invalid Data"), QString("Please enter a Valid Roll No."), QMessageBox::Ok, QMessageBox::Ok);
     }
 }
